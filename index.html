@@ -1,1 +1,1592 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nisus Real Estate</title>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* --- KEEPING YOUR EXISTING CSS EXACTLY AS IS --- */
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            --navy: #173750;
+            --navy-dark: #0f172a;
+            --navy-light: #1c425e;
+            --lime: #B6C947;
+            --lime-dim: #8FA035;
+            --white: #FFFFFF;
+            --off-white: #F7F8FA;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --text-light: #cbd5e1;
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: 2rem; 
+        }
+
+        ::selection {
+            background: var(--lime);
+            color: var(--navy);
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        button { cursor: pointer; border: none; font-family: inherit; }
+
+        /* --- 2. UTILITIES & LAYOUT --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-py { padding-top: 6rem; padding-bottom: 6rem; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .flex-col { flex-direction: column; }
+        .grid { display: grid; gap: 2rem; }
+        .text-center { text-align: center; }
+        .relative { position: relative; }
+        .hidden { display: none !important; }
+        
+        /* Typography Utilities */
+        .pill-badge {
+            display: inline-block; 
+            background: rgba(182, 201, 71, 0.1); 
+            color: var(--lime); 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 99px; 
+            font-weight: 700; 
+            font-size: 0.75rem; 
+            margin-bottom: 1rem; 
+            border: 1px solid rgba(182, 201, 71, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .pill-badge.dark-mode {
+            background: rgba(23, 55, 80, 0.1);
+            color: var(--navy);
+            border-color: rgba(23, 55, 80, 0.2);
+        }
+
+        .section-title {
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            margin-bottom: 1.5rem; 
+            line-height: 1.1;
+        }
+        
+        .section-desc-lg {
+            font-size: 1.125rem; 
+            line-height: 1.6; 
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .text-lime { color: var(--lime); }
+        .text-navy { color: var(--navy); }
+        .text-white { color: white; }
+        .text-muted-light { color: #94a3b8; }
+        .text-muted-dark { color: var(--text-gray); }
+
+        /* Grid Columns */
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-4 { grid-template-columns: 1fr; }
+        .grid-services { grid-template-columns: 1fr; }
+        
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr 1fr; }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-services { grid-template-columns: repeat(2, 1fr); }
+            .md-row { flex-direction: row; }
+            .md-row-reverse { flex-direction: row-reverse; }
+            .md-text-left { text-align: left; }
+            .mobile-only { display: none !important; } 
+            .desktop-only { display: block !important; } 
+        }
+
+        @media (min-width: 1024px) {
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            .grid-services { grid-template-columns: repeat(3, 1fr); } 
+        }
+
+        /* --- 3. NAVIGATION (PILL STYLE) --- */
+        nav {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1200px;
+            z-index: 1000;
+            padding: 0.75rem 2rem;
+            transition: all 0.3s ease;
+            background: rgba(23, 55, 80, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 9999px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav.scrolled {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            background: rgba(23, 55, 80, 0.95);
+        }
+
+        .nav-logo { height: 32px; filter: brightness(0) invert(1); }
+        
+        .nav-links { display: none; gap: 2rem; align-items: center; }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+
+        .nav-link { font-weight: 500; font-size: 0.9rem; color: var(--white); opacity: 0.9; }
+        .nav-link:hover { color: var(--lime) !important; opacity: 1; }
+
+        .btn-contact {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: 0.3s;
+            background-color: var(--lime);
+            color: var(--navy);
+        }
+        .btn-contact:hover { background-color: var(--white); }
+
+        /* Language Toggle with Flag */
+        .lang-toggle {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .lang-toggle:hover { background: rgba(255,255,255,0.1); border-color: var(--lime); color: var(--lime); }
+        
+        .flag-icon {
+            width: 20px;
+            height: 14px;
+            border-radius: 2px;
+            display: inline-block;
+        }
+
+        /* Mobile Menu */
+        .mobile-toggle { color: var(--white); background: none; display: block; }
+        
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--navy);
+            z-index: 999;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            padding-top: 2rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Hide mobile menu on desktop */
+        @media (min-width: 768px) {
+            .mobile-menu { display: none !important; }
+        }
+        
+        .mobile-menu.open { transform: translateX(0); }
+        .mobile-link {
+            display: block;
+            color: var(--white);
+            font-size: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-weight: 700;
+        }
+        
+        .close-btn {
+            align-self: flex-end;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            transition: 0.3s;
+        }
+        .close-btn:hover { background: var(--lime); color: var(--navy); }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            position: relative;
+            background-color: var(--navy);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            overflow: hidden;
+        }
+
+        .hero-bg-shape {
+            position: absolute;
+            top: 0; right: 0; width: 66%; height: 100%;
+            opacity: 0.1; pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background: rgba(182, 201, 71, 0.1);
+            border: 1px solid rgba(182, 201, 71, 0.3);
+            margin-bottom: 2rem;
+        }
+        .hero-badge span { color: var(--lime); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 2rem; line-height: 1.1; font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        @media (min-width: 1024px) { .hero h1 { font-size: 2.75rem; } }
+        .text-highlight { color: var(--lime); }
+        
+        .hero p { color: #cbd5e1; font-size: 1.125rem; margin-bottom: 2rem; line-height: 1.6; max-width: 500px; }
+
+        .btn-primary {
+            background-color: var(--lime); color: var(--navy);
+            padding: 1rem 2rem; border-radius: 9999px; font-weight: 700;
+            box-shadow: 0 0 20px rgba(182, 201, 71, 0.3);
+            transition: transform 0.2s, background 0.2s, color 0.2s;
+            display: inline-block;
+        }
+        .btn-primary:hover { background: var(--navy); color: var(--lime); transform: scale(1.05); }
+
+        .btn-outline {
+            border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+            padding: 1rem 2rem; border-radius: 9999px; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: transparent;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+        /* --- DYNAMIC RADAR VISUAL --- */
+        .radar-wrapper {
+            background: #0f172a;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            border-radius: 50%;
+            width: 500px; height: 500px;
+            position: relative;
+            margin: 0 auto;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Rings */
+        .holo-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px dashed rgba(255,255,255,0.1);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .ring-outer { width: 450px; height: 450px; animation: spin-slow 20s linear infinite; }
+        .ring-inner { width: 300px; height: 300px; border-style: dotted; animation: spin-reverse 15s linear infinite; border-color: rgba(255,255,255,0.15); }
+
+        @keyframes spin-slow { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes spin-reverse { from { transform: translate(-50%, -50%) rotate(360deg); } to { transform: translate(-50%, -50%) rotate(0deg); } }
+
+        /* Core */
+        .radar-core {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 100px; height: 100px; background: rgba(23, 55, 80, 0.5);
+            border-radius: 50%; filter: blur(20px);
+            animation: pulse-core 3s infinite;
+        }
+        .radar-dot {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 12px; height: 12px; background: white; border-radius: 50%;
+            box-shadow: 0 0 20px 5px rgba(255,255,255,0.8);
+            z-index: 10;
+        }
+        @keyframes pulse-core { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; } }
+
+        /* Radar Scans */
+        .radar-scan {
+            position: absolute; top: 50%; left: 50%;
+            width: 250px; height: 250px;
+            border-radius: 50%;
+            border: 1px solid rgba(182, 201, 71, 0.4);
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        .scan-1 { animation: radar-ping 3s infinite; }
+        .scan-2 { animation: radar-ping 3s infinite 1s; }
+        .scan-3 { animation: radar-ping 3s infinite 2s; }
+
+        @keyframes radar-ping {
+            0% { transform: translate(-50%, -50%) scale(0); opacity: 0.8; border-width: 2px; }
+            100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; border-width: 0px; }
+        }
+
+        /* Status Cards Container */
+        .status-container {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 20;
+            width: 170px;
+        }
+
+        .status-card {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.5s ease;
+            width: 100%;
+            margin-bottom: 0.75rem; /* Space between card and pin */
+            text-align: center;
+        }
+        
+        .status-label { font-size: 0.7rem; font-weight: 700; color: white; margin-bottom: 0; line-height: 1.2; display: block; width: 100%; text-align: center;}
+        .status-city { font-size: 0.6rem; color: #94a3b8; font-weight: 600; text-transform: uppercase; margin-bottom: 0.25rem; display: block; width: 100%; text-align: center;}
+        
+        /* Map Pin Assembly */
+        .pin-assembly {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 0.5s;
+            margin-top: -5px;
+        }
+        .map-pin { transition: 0.5s; margin-bottom: -15px; z-index: 2; position: relative; }
+        .house-icon { transition: 0.5s; z-index: 1; opacity: 0.7; }
+
+        /* Animation States - Red/Green Cycle */
+        .anim-cycle { animation: state-cycle 6s infinite; }
+        .anim-delay-1 { animation-delay: 0s; }
+        .anim-delay-2 { animation-delay: 2s; }
+        .anim-delay-3 { animation-delay: 4s; }
+
+        /* Apply specific animations to children properties for robustness */
+        .anim-cycle .status-card { animation: card-flip 6s infinite; }
+        .anim-cycle .map-pin { animation: pin-flip 6s infinite; }
+        .anim-cycle .house-icon { animation: house-flip 6s infinite; }
+        .anim-cycle .val-text-red { animation: text-red-flip 6s infinite; }
+        .anim-cycle .val-text-green { animation: text-green-flip 6s infinite; }
+
+        /* Delays applied to children */
+        .anim-delay-1 * { animation-delay: 0s !important; }
+        .anim-delay-2 * { animation-delay: 2s !important; }
+        .anim-delay-3 * { animation-delay: 4s !important; }
+
+        @keyframes card-flip { 
+            0%, 45% { border-color: rgba(239,68,68,0.4); transform: translateY(0); }
+            50%, 95% { border-color: rgba(182,201,71,0.6); transform: translateY(-5px); box-shadow: 0 10px 25px -5px rgba(182,201,71,0.2); }
+            100% { border-color: rgba(239,68,68,0.4); transform: translateY(0); }
+        }
+        @keyframes pin-flip { 0%, 45% { color: #ef4444; } 50%, 95% { color: #B6C947; } 100% { color: #ef4444; } }
+        @keyframes house-flip { 0%, 45% { color: #fecaca; opacity: 0.5; } 50%, 95% { color: white; opacity: 1; } 100% { color: #fecaca; opacity: 0.5; } }
+        
+        @keyframes text-red-flip { 0%, 45% { transform:translateY(0); opacity:1; } 50%, 95% { transform:translateY(-100%); opacity:0; } 100% { transform:translateY(0); opacity:1; } }
+        @keyframes text-green-flip { 0%, 45% { transform:translateY(100%); opacity:0; } 50%, 95% { transform:translateY(0); opacity:1; } 100% { transform:translateY(100%); opacity:0; } }
+
+        /* Text Swap */
+        .val-swap { position: relative; height: 1.2em; width: 100%; overflow: hidden; font-weight: 700; font-size: 0.85rem;}
+        .val-text-red { position: absolute; left: 0; right: 0; text-align: center; color: #f87171; transition: 0.5s; }
+        .val-text-green { position: absolute; left: 0; right: 0; text-align: center; color: var(--lime); transition: 0.5s; transform: translateY(100%); opacity: 0; }
+
+
+        /* --- 5. REALITY CHECK & TABS --- */
+        .tabs-scroll-container { overflow-x: auto; padding-bottom: 1rem; margin-bottom: 2rem; display: flex; justify-content: center; }
+        .tabs-container { display: flex; background: #f1f5f9; padding: 0.35rem; border-radius: 9999px; width: fit-content; border: 1px solid #e2e8f0; gap: 0.25rem; }
+        .tab-btn { padding: 0.75rem 1.5rem; border-radius: 9999px; font-weight: 600; font-size: 0.9rem; color: var(--text-gray); background: transparent; transition: all 0.3s; white-space: nowrap; }
+        .tab-btn.active { background: var(--navy); color: var(--white); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+
+        .comparison-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        @media (min-width: 768px) { .comparison-grid { grid-template-columns: 1fr 1fr; } }
+
+        .comp-card { padding: 2.5rem; border-radius: 1.5rem; position: relative; display: flex; flex-direction: column; height: 100%; transition: all 0.4s ease; }
+        .comp-card.traditional { background: #120303; border: 1px solid #360808; color: #fca5a5; }
+        .comp-card.traditional h3 { color: #f87171; }
+        .comp-card.traditional .quote-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); color: #d1d5db; }
+        .comp-card.traditional .result-box { background: rgba(127, 29, 29, 0.2); border: 1px solid rgba(127, 29, 29, 0.4); color: #fecaca; }
+        .comp-card.nisus { background: #0b1a26; border: 1px solid var(--lime-dim); color: #e2e8f0; box-shadow: 0 0 40px rgba(182, 201, 71, 0.05); }
+        .comp-card.nisus h3 { color: var(--lime); }
+        .comp-card.nisus .quote-box { background: rgba(23, 55, 80, 0.4); border: 1px solid rgba(182, 201, 71, 0.1); color: #fff; }
+        .comp-card.nisus .result-box { background: rgba(182, 201, 71, 0.1); border: 1px solid rgba(182, 201, 71, 0.3); color: var(--lime); }
+
+        .quote-box { padding: 1.5rem; border-radius: 0.75rem; margin-bottom: 1.5rem; font-style: italic; }
+        .result-box { padding: 1.5rem; border-radius: 0.75rem; margin-top: auto; font-weight: 500; }
+        .comp-header { display: flex; align-items: center; gap: 0.75rem; font-size: 1.25rem; font-weight: 700; margin-bottom: 2rem; }
+
+        /* --- 6. VISUAL SECTIONS --- */
+        .visual-card-dark { background: #0f172a; border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.3); }
+        .visual-card-navy { background: var(--navy); border: 1px solid rgba(255,255,255,0.1); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2); color: white; }
+        .visual-card-pop { background: var(--navy); border: 2px solid var(--lime); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 0 30px rgba(182, 201, 71, 0.2); color: white; }
+
+        .visual-grid { display: grid; gap: 4rem; align-items: center; }
+        @media (min-width: 992px) { .visual-grid { grid-template-columns: 1fr 1fr; } }
+
+        /* House Scanner Visual */
+        .house-scanner-container { position: relative; border-radius: 1.5rem; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); background: #0f172a; }
+        .house-img { width: 100%; height: auto; display: block; opacity: 0.7; filter: grayscale(10%) contrast(1.1); }
+        .scan-bar { position: absolute; left: 0; width: 100%; height: 4px; background: var(--lime); box-shadow: 0 0 20px 5px rgba(182, 201, 71, 0.5); animation: scan-vertical 4s ease-in-out infinite; z-index: 10; }
+        @keyframes scan-vertical { 0% { top: 0%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { top: 100%; opacity: 0; } }
+
+        .hotspot { position: absolute; padding: 0.5rem 1rem; background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(8px); border-radius: 0.5rem; font-size: 0.75rem; display: flex; flex-direction: column; z-index: 5; opacity: 0; animation: hotspot-reveal 4s infinite; }
+        .hotspot-label { color: #94a3b8; text-transform: uppercase; font-weight: 700; font-size: 0.65rem; margin-bottom: 2px; }
+        .hotspot-val { font-weight: 600; color: white; display: flex; align-items: center; gap: 0.4rem; }
+        .val-good { color: var(--lime); } .val-warn { color: #fbbf24; }
+        .hs-roof { top: 20%; left: 40%; animation-delay: 0.8s; } .hs-hvac { top: 45%; right: 20%; animation-delay: 1.8s; } .hs-lawn { bottom: 15%; left: 25%; animation-delay: 2.8s; }
+        @keyframes hotspot-reveal { 0% { opacity: 0; transform: translateY(10px); } 10% { opacity: 0; transform: translateY(10px); } 15% { opacity: 1; transform: translateY(0); border-color: var(--lime); } 60% { opacity: 1; transform: translateY(0); border-color: rgba(255,255,255,0.2); } 80% { opacity: 0; transform: translateY(-5px); } 100% { opacity: 0; } }
+
+        /* List & Bars */
+        .list-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .list-row:last-child { border-bottom: none; }
+        .status-badge { padding: 0.25rem 0.75rem; border-radius: 99px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .badge-success { background: rgba(182, 201, 71, 0.2); color: var(--lime); border: 1px solid rgba(182, 201, 71, 0.3); }
+        .badge-pending { background: rgba(251, 191, 36, 0.2); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
+        .badge-danger { background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .score-bar-container { margin-bottom: 1.25rem; }
+        .score-label-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; }
+        .progress-track { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 99px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--lime); border-radius: 99px; width: 0; transition: width 1.5s ease-out; }
+        .anim-fill-95 { width: 95%; } .anim-fill-88 { width: 88%; } .anim-fill-100 { width: 100%; }
+
+        /* --- 7. HOW IT WORKS --- */
+        .hiw-grid { position: relative; z-index: 2; }
+        .step-card-dark { background: #1c425e; padding: 2rem; border-radius: 1rem; border: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 10; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .step-card-dark:hover { transform: translateY(-10px); box-shadow: 0 0 30px rgba(182, 201, 71, 0.15); border-color: var(--lime); }
+        .step-icon-glow { width: 3.5rem; height: 3.5rem; background: rgba(182, 201, 71, 0.1); color: var(--lime); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; border: 1px solid rgba(182, 201, 71, 0.3); box-shadow: 0 0 15px rgba(182, 201, 71, 0.1); }
+        .step-card-dark:hover .step-icon-glow { background: var(--lime); color: var(--navy); box-shadow: 0 0 20px rgba(182, 201, 71, 0.4); }
+        .connector-line-dark { display: none; position: absolute; top: 3.75rem; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(182, 201, 71, 0.3), transparent); z-index: 0; }
+        @media (min-width: 768px) { .connector-line-dark { display: block; } }
+
+        /* --- 8. SERVICES (Pillars) --- */
+        .service-card { background: var(--white); padding: 2rem; border-radius: 1rem; position: relative; overflow: hidden; display: flex; flex-direction: column; height: 100%; transition: all 0.4s ease; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .service-card::after { content: ''; position: absolute; inset: 0; border-radius: 1rem; padding: 2px; background: linear-gradient(135deg, var(--lime), var(--navy)); -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; opacity: 1; pointer-events: none; }
+        .service-card:hover { transform: translateY(-5px) scale(1.03); box-shadow: 0 25px 50px -12px rgba(23, 55, 80, 0.25); }
+        .service-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; position: relative; z-index: 2; }
+        .service-icon-box { width: 3rem; height: 3rem; background: var(--off-white); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--navy); transition: 0.3s; }
+        .service-card:hover .service-icon-box { background: var(--navy); color: var(--lime); }
+        .service-card:hover h3 { color: var(--lime); }
+        .service-list li { display: flex; gap: 0.75rem; font-size: 0.875rem; color: var(--text-gray); margin-bottom: 0.75rem; position: relative; z-index: 2; }
+        .dot-small { width: 6px; height: 6px; background: var(--lime); border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+        .bg-icon-decor { position: absolute; bottom: -1.5rem; right: -1.5rem; width: 8rem; height: 8rem; color: #f8fafc; opacity: 0; transition: 0.5s; transform-origin: bottom right; }
+        .service-card:hover .bg-icon-decor { opacity: 1; transform: rotate(12deg); }
+
+        /* ROI Calculator Visual (Match Pop Style) */
+        .calculator-card {
+            background: var(--navy);
+            border: 2px solid var(--lime);
+            border-radius: 1rem;
+            padding: 2rem;
+            color: white;
+            box-shadow: 0 0 30px rgba(182, 201, 71, 0.2);
+        }
+        .roi-input-group { margin-bottom: 1.25rem; }
+        .roi-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.5rem; color: #cbd5e1; }
+        .roi-slider {
+            -webkit-appearance: none; width: 100%; height: 6px; border-radius: 99px; background: rgba(255,255,255,0.1); outline: none; transition: 0.2s;
+        }
+        .roi-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--lime); cursor: pointer; box-shadow: 0 0 10px rgba(182, 201, 71, 0.5);
+        }
+        .roi-slider::-moz-range-thumb {
+            width: 18px; height: 18px; border-radius: 50%; background: var(--lime); cursor: pointer; box-shadow: 0 0 10px rgba(182, 201, 71, 0.5); border: none;
+        }
+        
+        .roi-result {
+            background: rgba(182, 201, 71, 0.1);
+            border: 1px solid rgba(182, 201, 71, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            transition: 0.3s;
+        }
+
+        /* --- CONTACT MODAL --- */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(8px);
+            z-index: 2000; 
+            /* CHANGE: Use visibility/opacity instead of display:none for transitions */
+            display: flex; /* Always flex, hide with visibility */
+            align-items: center; justify-content: center; padding: 1rem;
+            opacity: 0; visibility: hidden; pointer-events: none;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .modal-overlay.open { opacity: 1; visibility: visible; pointer-events: auto; }
+        
+        .modal-content {
+            background: var(--navy); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.5rem;
+            padding: 2.5rem; width: 100%; max-width: 550px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            position: relative;
+            transform: scale(0.95); transition: transform 0.3s;
+        }
+        .modal-overlay.open .modal-content { transform: scale(1); }
+        
+        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.1); border: none; color: white; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+        .modal-close:hover { background: var(--lime); color: var(--navy); }
+
+        .form-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+        @media (min-width: 640px) { .form-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .form-group { margin-bottom: 1.25rem; }
+        .form-label { display: block; color: #cbd5e1; font-size: 0.875rem; margin-bottom: 0.5rem; font-weight: 500; }
+        .form-input { 
+            width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
+            border-radius: 0.5rem; padding: 0.75rem; color: white; font-family: inherit; font-size: 1rem;
+            transition: 0.3s;
+        }
+        .form-input:focus { outline: none; border-color: var(--lime); background: rgba(255,255,255,0.1); }
+        
+        .prop-type-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+        .prop-btn { 
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #cbd5e1;
+            padding: 0.75rem 0.5rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; gap: 0.25rem; transition: 0.2s;
+        }
+        .prop-btn:hover { background: rgba(255,255,255,0.1); }
+        .prop-btn.active { background: rgba(182, 201, 71, 0.15); border-color: var(--lime); color: var(--lime); }
+        
+        .btn-submit {
+            width: 100%; background: var(--lime); color: var(--navy); padding: 1rem; border-radius: 0.75rem;
+            font-weight: 700; font-size: 1rem; margin-top: 1rem; transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(182, 201, 71, 0.3);
+        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(182, 201, 71, 0.4); }
+
+        /* --- LEGAL MODAL & ACCORDION --- */
+        .legal-modal-content {
+            background: var(--navy); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.5rem;
+            padding: 2.5rem; width: 100%; max-width: 700px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+            position: relative; max-height: 80vh; overflow-y: auto;
+            transform: scale(0.95); transition: transform 0.3s;
+        }
+        .modal-overlay.open .legal-modal-content { transform: scale(1); }
+
+        details {
+            background: rgba(255,255,255,0.03); border-radius: 0.75rem; margin-bottom: 1rem;
+            border: 1px solid rgba(255,255,255,0.05); overflow: hidden; transition: 0.3s;
+        }
+        details[open] { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.1); }
+        
+        summary {
+            padding: 1rem; font-weight: 700; cursor: pointer; color: white; list-style: none;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; font-size: 1.5rem; color: var(--lime); transition: 0.3s; }
+        details[open] summary::after { content: '-'; transform: rotate(180deg); }
+        
+        .legal-text { padding: 0 1.5rem 1.5rem 1.5rem; color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; }
+
+        /* --- FLOATING BARS --- */
+        .floating-actions {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1900;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .float-btn {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: 0.3s;
+            text-decoration: none;
+            position: relative;
+        }
+        .float-btn:hover { transform: scale(1.1); }
+        .btn-whatsapp { background: #25D366; }
+        .btn-call { background: var(--navy); border: 2px solid var(--lime); }
+        
+        /* Tooltip for floating buttons */
+        .float-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 120%;
+            background: rgba(15, 23, 42, 0.9);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+        .float-btn:hover::before { opacity: 1; }
+
+        @media (max-width: 768px) {
+            .floating-actions {
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+
+
+        /* --- UTILS --- */
+        .bg-offwhite { background-color: var(--off-white); }
+        .bg-navy { background-color: var(--navy); color: var(--white); }
+        .bg-dark-navy { background-color: #0f172a; color: white; }
+        .bg-white { background-color: var(--white); }
+        
+        /* Footer (Reset to standard full width) */
+        footer { 
+            background: var(--navy); 
+            padding: 4rem 0 2rem 0; 
+            color: white; 
+            margin-top: 0;
+        }
+        footer a:hover { color: var(--lime); }
+
+    </style>
+</head>
+<body>
+    
+    <svg style="display: none;">
+        <symbol id="flag-us" viewBox="0 0 640 480">
+            <g fill-rule="evenodd">
+                <path fill="#bd3d44" d="M0 0h640v480H0"/>
+                <path stroke="#fff" stroke-width="37" d="M0 55.3h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/>
+                <path fill="#192f5d" d="M0 0h296v258.5H0"/>
+                <g fill="#fff">
+                    <path d="M16 19h14l-11 9 4 13-11-8-12 8 5-13-11-9h13L16 5zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm55 0h14l-11 9 4 13-11-8-12 8 5-13-11-9h13l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zM44 56h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm55 0h14l-11 9 4 13-11-8-12 8 5-13-11-9h13l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zM16 93h14l-11 9 4 13-11-8-12 8 5-13-11-9h13L16 79zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm55 0h14l-11 9 4 13-11-8-12 8 5-13-11-9h13l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zM44 130h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm55 0h14l-11 9 4 13-11-8-12 8 5-13-11-9h13l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zM16 167h14l-11 9 4 13-11-8-12 8 5-13-11-9h13l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm55 0h14l-11 9 4 13-11-8-12 8 5-13-11-9h13l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zM44 204h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14zm55 0h14l-11 9 4 13-11-8-12 8 5-13-11-9h13l11-14zm56 0h13l-11 9 4 13-11-8-12 8 5-13-11-9h14l11-14z"/>
+                </g>
+            </g>
+        </symbol>
+        <symbol id="flag-mx" viewBox="0 0 640 480">
+            <path fill="#006847" d="M0 0h213.3v480H0z"/>
+            <path fill="#fff" d="M213.3 0h213.4v480H213.3z"/>
+            <path fill="#ce1126" d="M426.7 0H640v480H426.7z"/>
+            <g transform="translate(320 240) scale(0.4)">
+                <circle cx="0" cy="0" r="50" fill="#a08040"/>
+                <path d="M-40 20 Q 0 60 40 20" stroke="#006847" stroke-width="10" fill="none"/>
+            </g>
+        </symbol>
+    </svg>
+
+    <nav id="navbar">
+        <div class="flex justify-between items-center">
+            <a href="#" style="z-index: 1001;">
+                <img src="Images/LOGO-NISUS-REAL-ESTATE-OK-03-2.webp" 
+                     alt="Nisus Logo" 
+                     class="nav-logo"
+                     data-editable="source"
+                     data-path="index.html"
+                     data-key="nav_logo">
+            </a>
+
+            <div class="nav-links">
+                <a href="#comparison" class="nav-link" data-i18n="nav_comp">Comparison</a>
+                <a href="#how-it-works" class="nav-link" data-i18n="nav_process">Process</a>
+                <a href="#management" class="nav-link" data-i18n="nav_services">Services</a>
+                <a href="#roi-calculator" class="nav-link" data-i18n="nav_growth">Growth</a>
+                
+                <a href="#contact" class="btn-contact open-modal" data-i18n="nav_contact">Contact</a>
+                
+                <a href="tel:+17342624243" style="color: white; opacity: 0.9; transition: 0.3s; display: flex; align-items: center;" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='white'">
+                    <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+                </a>
+
+                <button class="lang-toggle" onclick="toggleLanguage()" id="lang-btn">
+                    <svg class="flag-icon"><use href="#flag-us"></use></svg>
+                    <span>EN</span>
+                </button>
+            </div>
+
+            <button class="mobile-toggle mobile-only" id="mobile-toggle-btn">
+                <i data-lucide="menu" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <button class="close-btn" id="close-menu-btn">
+                <i data-lucide="x"></i>
+            </button>
+            <a href="#comparison" class="mobile-link" data-i18n="nav_comp">Comparison</a>
+            <a href="#how-it-works" class="mobile-link" data-i18n="nav_process">Process</a>
+            <a href="#management" class="mobile-link" data-i18n="nav_services">Services</a>
+            <a href="#roi-calculator" class="mobile-link" data-i18n="nav_growth">Growth</a>
+            <a href="#contact" class="mobile-link open-modal" data-i18n="nav_contact">Contact</a>
+        </div>
+    </nav>
+
+    <div class="floating-actions">
+        <a href="https://wa.me/15551234567" class="float-btn btn-whatsapp" target="_blank" data-tooltip="WhatsApp">
+            <i data-lucide="message-circle"></i>
+        </a>
+        <a href="tel:+15551234567" class="float-btn btn-call" data-tooltip="Call Us">
+            <i data-lucide="phone"></i>
+        </a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-bg-shape">
+            <svg viewBox="0 0 800 800" width="100%" height="100%">
+                <circle cx="600" cy="200" r="300" fill="#B6C947" opacity="0.1" />
+                <path d="M200,600 L800,0" stroke="#B6C947" stroke-width="2" opacity="0.2" />
+            </svg>
+        </div>
+
+        <div class="container grid grid-2 items-center relative" style="z-index: 2;">
+            <div>
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    <span data-i18n="hero_badge" data-editable="source" data-path="index.html" data-key="hero_badge">For Local & Out-of-State Investors</span>
+                </div>
+                <h1 data-i18n="hero_title" data-editable="source" data-path="index.html" data-key="hero_title">Stress-Free Property Management in <span class="text-highlight">Detroit, Cleveland & Toledo</span></h1>
+                
+                <p data-i18n="hero_desc" data-editable="source" data-path="index.html" data-key="hero_desc">We handle the tenants, the maintenance, and the legalities so you can focus on scaling your portfolio from anywhere in the world.</p>
+                
+                <div class="flex flex-col md-row" style="gap: 1rem;">
+                    <button class="btn-primary open-modal" data-i18n="hero_cta_primary" data-editable="source" data-path="index.html" data-key="hero_cta_primary">Get Free Valuation</button>
+                    <a href="#roi-calculator" class="btn-outline">
+                        <span data-i18n="hero_cta_secondary" data-editable="source" data-path="index.html" data-key="hero_cta_secondary">ROI Calculator</span> <i data-lucide="calculator" style="width: 1rem;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mobile-only" style="margin-top: 2rem;"></div>
+
+            <div class="desktop-only hidden-md block-md">
+                <div class="radar-wrapper">
+                    <div class="holo-ring ring-outer"></div>
+                    <div class="holo-ring ring-inner"></div>
+                    
+                    <div class="radar-core"></div>
+                    <div class="radar-dot"></div>
+
+                    <div class="radar-scan scan-1"></div>
+                    <div class="radar-scan scan-2"></div>
+                    <div class="radar-scan scan-3"></div>
+
+                    <div class="status-container anim-cycle anim-delay-1" style="top: 25%; left: 15%;">
+                        <div class="status-card">
+                            <span class="status-label">123 Oak St</span>
+                            <span class="status-city">Detroit</span>
+                            <div class="val-swap">
+                                <span class="val-text-red" data-i18n="status_rent_due">Rent Due</span>
+                                <span class="val-text-green" data-i18n="status_collected">Collected</span>
+                            </div>
+                        </div>
+                        <div class="pin-assembly">
+                            <i data-lucide="map-pin" size="32" class="map-pin"></i>
+                            <i data-lucide="home" size="14" class="house-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="status-container anim-cycle anim-delay-2" style="top: 20%; right: 10%;">
+                        <div class="status-card">
+                            <span class="status-label">456 Maple</span>
+                            <span class="status-city">Toledo</span>
+                            <div class="val-swap">
+                                <span class="val-text-red" data-i18n="status_vacant">Vacant</span>
+                                <span class="val-text-green" data-i18n="status_rented">Rented</span>
+                            </div>
+                        </div>
+                        <div class="pin-assembly">
+                            <i data-lucide="map-pin" size="32" class="map-pin"></i>
+                            <i data-lucide="home" size="14" class="house-icon"></i>
+                        </div>
+                    </div>
+
+                    <div class="status-container anim-cycle anim-delay-3" style="bottom: 25%; right: 15%;">
+                        <div class="status-card">
+                            <span class="status-label">789 Pine</span>
+                            <span class="status-city">Cleveland</span>
+                            <div class="val-swap">
+                                <span class="val-text-red" data-i18n="status_reported">Reported</span>
+                                <span class="val-text-green" data-i18n="status_fixed">Fixed</span>
+                            </div>
+                        </div>
+                        <div class="pin-assembly">
+                            <i data-lucide="map-pin" size="32" class="map-pin"></i>
+                            <i data-lucide="home" size="14" class="house-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="section-py">
+        <div class="container">
+            <div class="text-center">
+                <div class="pill-badge dark-mode" data-i18n="badge_comparison">Comparison</div>
+                <h2 class="section-title text-navy" data-i18n="title_reality" data-editable="source" data-path="index.html" data-key="title_reality">The Reality Check</h2>
+                <div class="section-bar"></div>
+                <p class="section-desc-lg text-muted-dark" style="margin: 1rem auto 3rem auto;" data-i18n="desc_reality" data-editable="source" data-path="index.html" data-key="desc_reality">Select a service area to see the difference.</p>
+            </div>
+
+            <div class="tabs-scroll-container">
+                <div class="tabs-container">
+                    <button class="tab-btn active" onclick="switchTab('placement', this)" data-i18n="tab_placement">Tenant Placement</button>
+                    <button class="tab-btn" onclick="switchTab('maintenance', this)" data-i18n="tab_maintenance">Maintenance</button>
+                    <button class="tab-btn" onclick="switchTab('financials', this)" data-i18n="tab_financials">Financials</button>
+                    <button class="tab-btn" onclick="switchTab('legal', this)" data-i18n="tab_legal">Legal</button>
+                </div>
+            </div>
+
+            <div id="comparison-container" class="comparison-grid">
+                </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="section-py bg-navy">
+        <div class="container">
+            <div class="flex flex-col md-row justify-between items-center" style="margin-bottom: 4rem;">
+                <div>
+                    <div class="pill-badge" data-i18n="badge_process">Process</div>
+                    <h2 class="section-title text-white" data-i18n="title_how" data-editable="source" data-path="index.html" data-key="title_how">How We Work</h2>
+                    <p class="text-muted-light section-desc-lg" style="margin-bottom: 0;" data-i18n="desc_how" data-editable="source" data-path="index.html" data-key="desc_how">From onboarding to passive income in 4 steps.</p>
+                </div>
+            </div>
+
+            <div class="relative" style="padding-bottom: 3rem;">
+                <div class="connector-line-dark"></div>
+                <div class="grid grid-4 hiw-grid">
+                    <div class="step-card-dark">
+                        <div class="step-icon-glow"><i data-lucide="search"></i></div>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step1_title" data-editable="source" data-path="index.html" data-key="step1_title">1. Evaluation</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step1_desc" data-editable="source" data-path="index.html" data-key="step1_desc">We analyze your property's rental potential and compliance needs.</p>
+                    </div>
+                    <div class="step-card-dark">
+                        <div class="step-icon-glow"><i data-lucide="clipboard-check"></i></div>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step2_title" data-editable="source" data-path="index.html" data-key="step2_title">2. Onboarding</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step2_desc" data-editable="source" data-path="index.html" data-key="step2_desc">We handle LLCs, bank accounts, and seamless property takeover.</p>
+                    </div>
+                    <div class="step-card-dark">
+                        <div class="step-icon-glow"><i data-lucide="user-check"></i></div>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step3_title" data-editable="source" data-path="index.html" data-key="step3_title">3. Placement</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step3_desc" data-editable="source" data-path="index.html" data-key="step3_desc">Marketing, rigorous screening, and swift tenant placement.</p>
+                    </div>
+                    <div class="step-card-dark">
+                        <div class="step-icon-glow"><i data-lucide="pie-chart"></i></div>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step4_title" data-editable="source" data-path="index.html" data-key="step4_title">4. Management</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step4_desc" data-editable="source" data-path="index.html" data-key="step4_desc">Monthly reports, 24/7 maintenance, and direct deposits.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-primary open-modal" data-i18n="btn_journey" data-editable="source" data-path="index.html" data-key="btn_journey">Start Your Journey</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-py bg-navy" style="color:white; border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container visual-grid">
+            
+            <div>
+                <div class="pill-badge" data-i18n="badge_peace">PEACE OF MIND</div>
+                <h2 class="section-title" data-editable="source" data-path="index.html" data-key="title_peace">
+                    <span data-i18n="title_eyes">Your Eyes and Ears</span> <span class="text-lime" data-i18n="title_ground">On The Ground</span>
+                </h2>
+                <p class="text-muted-light section-desc-lg" data-i18n="desc_eyes" data-editable="source" data-path="index.html" data-key="desc_eyes">
+                    You shouldn't have to guess the condition of your investment. We perform rigorous move-in and move-out inspections, complete with photos, to ensure your property is respected and maintained.
+                </p>
+
+                <ul style="margin-top: 2rem;">
+                    <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
+                        <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="camera" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
+                        </div>
+                        <span data-i18n="bullet_peace_1" data-editable="source" data-path="index.html" data-key="bullet_peace_1">Detailed Reports</span>
+                    </li>
+                    <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
+                        <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="shield-check" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
+                        </div>
+                        <span data-i18n="bullet_peace_2" data-editable="source" data-path="index.html" data-key="bullet_peace_2">Regular Safety Inspections</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="house-scanner-container">
+                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1000&auto=format&fit=crop" 
+                     alt="House Scan" 
+                     class="house-img"
+                     data-editable="image"
+                     data-prop-src="house_scan_img">
+                <div class="scan-bar"></div>
+                <div class="hotspot hs-roof">
+                    <span class="hotspot-label">Roof Inspection</span>
+                    <span class="hotspot-val val-good"><i data-lucide="check-circle-2" size="14"></i> GOOD CONDITION</span>
+                </div>
+                <div class="hotspot hs-hvac">
+                    <span class="hotspot-label">HVAC System</span>
+                    <span class="hotspot-val val-warn"><i data-lucide="alert-triangle" size="14"></i> FILTER CHANGE</span>
+                </div>
+                <div class="hotspot hs-lawn">
+                    <span class="hotspot-label">Exterior</span>
+                    <span class="hotspot-val val-good"><i data-lucide="check-circle-2" size="14"></i> LAWN MOWED</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-py bg-white">
+        <div class="container visual-grid">
+            <div class="visual-card-navy">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:1rem;">
+                    <span style="font-weight:700; font-size:1.1rem;">Applicant Scorecard</span>
+                    <span style="background:var(--lime); color:var(--navy); font-size:0.75rem; font-weight:700; padding:0.25rem 0.5rem; border-radius:4px;">APPROVED</span>
+                </div>
+                
+                <div class="score-bar-container">
+                    <div class="score-label-row"><span>Credit Score</span> <span>Excellent (750+)</span></div>
+                    <div class="progress-track"><div class="progress-fill anim-fill-95"></div></div>
+                </div>
+                <div class="score-bar-container">
+                    <div class="score-label-row"><span>Rent-to-Income Ratio</span> <span>3.5x (Safe)</span></div>
+                    <div class="progress-track"><div class="progress-fill anim-fill-88"></div></div>
+                </div>
+                <div class="score-bar-container">
+                    <div class="score-label-row"><span>Rental History</span> <span>Verified Clean</span></div>
+                    <div class="progress-track"><div class="progress-fill anim-fill-100"></div></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="pill-badge dark-mode" data-i18n="badge_screening">SCREENING</div>
+                <h2 class="section-title text-navy" data-editable="source" data-path="index.html" data-key="title_quality_group"><span data-i18n="title_quality">Quality Residents,</span> <span style="color:var(--lime-dim);" data-i18n="title_income">Reliable Income</span></h2>
+                <p class="text-muted-dark section-desc-lg" data-i18n="desc_quality" data-editable="source" data-path="index.html" data-key="desc_quality">
+                    We don't just fill units; we find the right people. Our rigorous screening process checks credit, income, criminal background, and past rental history to ensure you get paid on time, every time.
+                </p>
+                <button class="btn-primary open-modal" data-i18n="btn_criteria" data-editable="source" data-path="index.html" data-key="btn_criteria">See Our Criteria</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-py bg-offwhite">
+        <div class="container visual-grid">
+             <div class="md:order-last">
+                <div class="pill-badge dark-mode" data-i18n="badge_guaranteed">GUARANTEED RENT</div>
+                <h2 class="section-title text-navy" data-i18n="title_sec8" data-editable="source" data-path="index.html" data-key="title_sec8">Section 8 Specialists</h2>
+                <p class="text-muted-dark section-desc-lg" data-i18n="desc_sec8" data-editable="source" data-path="index.html" data-key="desc_sec8">
+                    Navigating government housing programs can be complex, but the rewards are consistent, guaranteed income. We handle the initial inspections, paperwork, and ongoing compliance so you enjoy the stability without the headache.
+                </p>
+            </div>
+             <div class="visual-card-navy md:order-first" style="background:#173750;">
+                <div style="text-align: center; padding: 2rem 0;">
+                    <div style="background: rgba(255,255,255,0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+                        <i data-lucide="landmark" size="40" style="color: var(--lime);"></i>
+                    </div>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="sec8_guarantee" data-editable="source" data-path="index.html" data-key="sec8_guarantee">Government Guaranteed</h3>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="sec8_deposit" data-editable="source" data-path="index.html" data-key="sec8_deposit">Consistent monthly payments via Direct Deposit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-py bg-navy">
+        <div class="container visual-grid" style="grid-template-columns: 1fr 1fr; direction: rtl;">
+            <div class="visual-card-pop" style="direction: ltr;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:1.5rem;">
+                    <h4 style="font-weight:700;">Rent Collection Status</h4>
+                    </div>
+                <div class="list-row"><div><div style="font-weight:600; color:white;">123 Oak St</div><div style="font-size:0.75rem; color:#64748b;">Detroit, MI</div></div><span class="status-badge badge-success">PAID ON TIME</span></div>
+                <div class="list-row"><div><div style="font-weight:600; color:white;">456 Maple Ave</div><div style="font-size:0.75rem; color:#64748b;">Toledo, OH</div></div><span class="status-badge badge-success">PAID ON TIME</span></div>
+                <div class="list-row"><div><div style="font-weight:600; color:white;">789 Pine St</div><div style="font-size:0.75rem; color:#64748b;">Cleveland, OH</div></div><span class="status-badge badge-pending">EXTENSION</span></div>
+                <div class="list-row"><div><div style="font-weight:600; color:white;">321 Elm St</div><div style="font-size:0.75rem; color:#64748b;">Detroit, MI</div></div><span class="status-badge badge-danger">LATE (2 DAYS)</span></div>
+            </div>
+
+            <div style="direction: ltr;">
+                <div class="pill-badge" data-i18n="badge_portal">PORTAL</div>
+                <h2 class="section-title text-white" data-editable="source" data-path="index.html" data-key="title_financial_group"><span data-i18n="title_financial">Total Financial</span> <span class="text-lime" data-i18n="title_transparency">Transparency</span></h2>
+                <p class="text-muted-light section-desc-lg" data-i18n="desc_financial" data-editable="source" data-path="index.html" data-key="desc_financial">
+                    Know exactly where your money is at all times. Our owner portal gives you real-time updates on rent collection, expenses, and deposits. No more wondering if the check is in the mail.
+                </p>
+
+                <ul style="margin-bottom: 2rem;">
+                    <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
+                        <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="receipt" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
+                        </div>
+                        <span data-i18n="bullet_expenses" data-editable="source" data-path="index.html" data-key="bullet_expenses">Detailed Expense Categorization</span>
+                    </li>
+                    <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
+                        <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i data-lucide="file-down" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
+                        </div>
+                        <span data-i18n="bullet_reports" data-editable="source" data-path="index.html" data-key="bullet_reports">On-Demand Tax Reports</span>
+                    </li>
+                </ul>
+
+                <button class="btn-primary open-modal" data-i18n="btn_access_portal" data-editable="source" data-path="index.html" data-key="btn_access_portal">Get Portal Access</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="management" class="section-py">
+        <div class="container">
+            <div class="text-center">
+                <div class="pill-badge dark-mode" data-i18n="badge_services">SERVICES</div>
+                <h2 class="section-title text-navy" data-i18n="title_comprehensive" data-editable="source" data-path="index.html" data-key="title_comprehensive">Comprehensive Services</h2>
+                <div class="section-bar"></div>
+            </div>
+
+            <div class="grid grid-services" style="margin-top: 3rem;">
+                <div class="service-card"><div class="service-header"><h3 data-editable="source" data-path="index.html" data-key="service_1_title">Management</h3><div class="service-icon-box"><i data-lucide="building"></i></div></div><ul class="service-list" data-editable="source" data-path="index.html" data-key="service_1_list"><li>Vacancy marketing</li><li>Tenant selection</li><li>Rent collections</li><li>24/7 maintenance</li></ul><i data-lucide="building" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="source" data-path="index.html" data-key="service_2_title">Maintenance</h3><div class="service-icon-box"><i data-lucide="wrench"></i></div></div><ul class="service-list" data-editable="source" data-path="index.html" data-key="service_2_list"><li>Inspections</li><li>Rent collections</li><li>Property insurance</li><li>Utilities management</li></ul><i data-lucide="wrench" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="source" data-path="index.html" data-key="service_3_title">Support</h3><div class="service-icon-box"><i data-lucide="shield"></i></div></div><ul class="service-list" data-editable="source" data-path="index.html" data-key="service_3_list"><li>LLC creation</li><li>Bank accounts</li><li>Legal & Tax support</li><li>Investor portal</li></ul><i data-lucide="shield" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="source" data-path="index.html" data-key="service_4_title">Section 8</h3><div class="service-icon-box"><i data-lucide="landmark"></i></div></div><ul class="service-list" data-editable="source" data-path="index.html" data-key="service_4_list"><li>Inspection Handling</li><li>Voucher Processing</li><li>Compliance Checks</li><li>Direct Deposit</li></ul><i data-lucide="landmark" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="source" data-path="index.html" data-key="service_5_title">Investments</h3><div class="service-icon-box"><i data-lucide="trending-up"></i></div></div><ul class="service-list" data-editable="source" data-path="index.html" data-key="service_5_list"><li>Investment advice</li><li>Market analysis</li><li>Portfolio strategy</li><li>ROI Modeling</li></ul><i data-lucide="trending-up" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="source" data-path="index.html" data-key="service_6_title">Sale</h3><div class="service-icon-box"><i data-lucide="bar-chart-3"></i></div></div><ul class="service-list" data-editable="source" data-path="index.html" data-key="service_6_list"><li>Appraisal</li><li>Strategic Marketing</li><li>Brokerage services</li><li>Exit strategy</li></ul><i data-lucide="bar-chart-3" class="bg-icon-decor"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roi-calculator" class="section-py bg-navy" style="border-top: 1px solid rgba(255,255,255,0.05);">
+        <div class="container visual-grid">
+            <div>
+                <div class="pill-badge" data-i18n="badge_growth">GROWTH</div>
+                <h2 class="section-title text-white" data-editable="source" data-path="index.html" data-key="title_ready_group"><span data-i18n="title_ready">Ready to Grow Your</span> <span class="text-lime" data-i18n="title_portfolio">Portfolio?</span></h2>
+                <p class="section-desc-lg text-muted-light" data-i18n="desc_growth" data-editable="source" data-path="index.html" data-key="desc_growth">
+                    Beyond management, we are active investors and brokers. Gain access to exclusive off-market deals and expert guidance to scale your holdings in Detroit and Ohio. We help you calculate true ROI before you buy.
+                </p>
+                <div class="flex gap-4">
+                    <button class="btn-primary open-modal" data-i18n="btn_view_inv" data-editable="source" data-path="index.html" data-key="btn_view_inv">View Investment Opportunities</button>
+                    <a href="tel:+15551234567" class="btn-outline" data-i18n="btn_talk_broker" data-editable="source" data-path="index.html" data-key="btn_talk_broker">Call Us</a>
+                </div>
+            </div>
+
+            <div class="calculator-card visual-card-pop">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.25rem; font-weight: 700;">Investment Analysis</h3>
+                    <i data-lucide="calculator" style="color: var(--lime);"></i>
+                </div>
+                <div class="roi-input-group"><div class="roi-label"><span>Purchase Price</span><span id="label-price">$120,000</span></div><input type="range" min="50000" max="300000" step="5000" value="120000" class="roi-slider" id="input-price" oninput="calculateROI()"></div>
+                <div class="roi-input-group"><div class="roi-label"><span>Monthly Rent</span><span id="label-rent">$1,450</span></div><input type="range" min="500" max="3500" step="50" value="1450" class="roi-slider" id="input-rent" oninput="calculateROI()"></div>
+                <div class="roi-input-group"><div class="roi-label"><span>Renovation Cost</span><span id="label-reno">$15,000</span></div><input type="range" min="0" max="100000" step="1000" value="15000" class="roi-slider" id="input-reno" oninput="calculateROI()"></div>
+                <div class="roi-result"><div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem;">Projected Cash on Cash ROI</div><div style="font-size: 2.5rem; font-weight: 700; color: var(--lime);" id="result-roi">12.9%</div></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="grid grid-4" style="margin-bottom: 3rem;">
+                <div>
+                    <img src="Images/LOGO-NISUS-REAL-ESTATE-OK-03-2.webp" alt="Logo" class="nav-logo" style="filter: brightness(0) invert(1);" data-editable="source" data-path="index.html" data-key="footer_logo">
+                    <p style="font-size: 0.875rem; line-height: 1.6; color: white; margin-top: 1rem;" data-i18n="footer_desc" data-editable="source" data-path="index.html" data-key="footer_desc">Your partner for building generational wealth through intelligent real estate investment and management.</p>
+                </div>
+                <div>
+                    <h4 style="color:white; margin-bottom:1rem;" data-i18n="footer_services">Services</h4>
+                    <ul style="color:white; font-size:0.9rem; line-height:2;">
+                        <li><a href="#">Investments</a></li>
+                        <li><a href="#">Property Management</a></li>
+                        <li><a href="#">Sales & Brokerage</a></li>
+                        <li><a href="#">Portfolio Analysis</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:white; margin-bottom:1rem;" data-i18n="footer_cities">Cities</h4>
+                    <ul style="color:white; font-size:0.9rem; line-height:2;">
+                        <li><a href="#">Detroit, MI</a></li>
+                        <li><a href="#">Cleveland, OH</a></li>
+                        <li><a href="#">Toledo, OH</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color:white; margin-bottom:1rem;" data-i18n="footer_legal">Legal</h4>
+                    <ul style="color:white; font-size:0.9rem; line-height:2;">
+                        <li><a href="javascript:void(0)" onclick="openLegalModal()" data-i18n="legal_privacy">Privacy Policy</a></li>
+                        <li><a href="javascript:void(0)" onclick="openLegalModal()" data-i18n="legal_terms">Terms of Service</a></li>
+                        <li><a href="javascript:void(0)" onclick="openLegalModal()" data-i18n="legal_cookies">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.875rem; flex-wrap: wrap; gap: 1rem; color: white;">
+                <p>&copy; 2024 Nisus Real Estate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="close-modal-btn"><i data-lucide="x"></i></button>
+            <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="modal_title">Get Started with Nisus</h3>
+            <p style="color:#cbd5e1; margin-bottom: 2rem; font-size: 0.9rem;" data-i18n="modal_desc">Fill out the form below and we'll get back to you within 24 hours.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Application Submitted!');">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_name">Full Name</label>
+                        <input type="text" class="form-input" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_phone">Phone</label>
+                        <input type="tel" class="form-input" placeholder="(555) 000-0000">
+                    </div>
+                </div>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_email">Email</label>
+                        <input type="email" class="form-input" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" data-i18n="form_market">Target Market</label>
+                        <input type="text" class="form-input" placeholder="City, County or Zip">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" data-i18n="form_prop_type">Primary Property Type</label>
+                    <div class="prop-type-grid">
+                        <div class="prop-btn active" onclick="selectProp(this)"><i data-lucide="home" size="16"></i> Single Family</div>
+                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="building" size="16"></i> Condo</div>
+                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="layers" size="16"></i> 2-4 Plex</div>
+                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up" size="16"></i> 1 Story</div>
+                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up-circle" size="16"></i> 2 Story</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="legal-modal">
+        <div class="legal-modal-content">
+            <button class="modal-close" id="close-legal-btn"><i data-lucide="x"></i></button>
+            <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem;" data-i18n="legal_title">Legal Information</h3>
+            
+            <div class="legal-section">
+                <details>
+                    <summary data-i18n="legal_privacy">Privacy Policy</summary>
+                    <div class="legal-text">
+                        <p>At Nisus Real Estate, we are committed to protecting your privacy. We collect personal information solely for the purpose of providing our property management and investment services. We do not sell or share your data with third parties for marketing purposes.</p>
+                    </div>
+                </details>
+                <details>
+                    <summary data-i18n="legal_terms">Terms of Service</summary>
+                    <div class="legal-text">
+                        <p>By using our services, you agree to comply with our terms. Our services are provided "as is" and we reserve the right to modify or discontinue any part of our offerings at any time. Property performance projections are estimates and not guarantees.</p>
+                    </div>
+                </details>
+                <details>
+                    <summary data-i18n="legal_cookies">Cookie Policy</summary>
+                    <div class="legal-text">
+                        <p>We use cookies to enhance your browsing experience and analyze site traffic. By continuing to use our website, you consent to our use of cookies in accordance with our Privacy Policy.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) { navbar.classList.add('scrolled'); } 
+            else { navbar.classList.remove('scrolled'); }
+        });
+
+        // Mobile Menu
+        const mobileBtn = document.getElementById('mobile-toggle-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
+        function openMenu() { mobileMenu.classList.add('open'); }
+        function closeMenu() { mobileMenu.classList.remove('open'); }
+
+        mobileBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => { link.addEventListener('click', closeMenu); });
+
+        // ROI Calculator
+        window.calculateROI = function() {
+            const price = parseFloat(document.getElementById('input-price').value);
+            const rent = parseFloat(document.getElementById('input-rent').value);
+            const reno = parseFloat(document.getElementById('input-reno').value);
+            document.getElementById('label-price').innerText = '$' + price.toLocaleString();
+            document.getElementById('label-rent').innerText = '$' + rent.toLocaleString();
+            document.getElementById('label-reno').innerText = '$' + reno.toLocaleString();
+            const annualRent = rent * 12;
+            const expenses = annualRent * 0.4;
+            const noi = annualRent - expenses;
+            const totalInv = price + reno;
+            let roi = 0;
+            if(totalInv > 0) { roi = (noi / totalInv) * 100; }
+            document.getElementById('result-roi').innerText = roi.toFixed(1) + '%';
+        }
+        window.calculateROI(); // Initial calc
+
+        // Modals
+        const contactModal = document.getElementById('contact-modal');
+        const legalModal = document.getElementById('legal-modal');
+        
+        // Ensure buttons work by waiting for DOM or just running script at end
+        document.querySelectorAll('.open-modal').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                contactModal.classList.add('open');
+            });
+        });
+
+        document.getElementById('close-modal-btn').addEventListener('click', () => {
+            contactModal.classList.remove('open');
+        });
+
+        // Make globally available for onclick
+        window.openLegalModal = function() {
+            legalModal.classList.add('open');
+        }
+
+        document.getElementById('close-legal-btn').addEventListener('click', () => {
+            legalModal.classList.remove('open');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === contactModal) contactModal.classList.remove('open');
+            if (e.target === legalModal) legalModal.classList.remove('open');
+        });
+
+        window.selectProp = function(btn) {
+            document.querySelectorAll('.prop-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // --- COMPARISON TABS LOGIC ---
+        const comparisonData = {
+            placement: {
+                tradTitle: "Traditional Manager",
+                tradQuote: "We put a sign in the yard and list on MLS.",
+                tradResult: "High Vacancy Risk",
+                nisusTitle: "Nisus Strategy",
+                nisusQuote: "Professional photography, 3D tours, and syndication to 40+ portals including Zillow, Trulia, and HotPads.",
+                nisusResult: "Avg. 14 Days to Lease"
+            },
+            maintenance: {
+                tradTitle: "Traditional Manager",
+                tradQuote: "We add a 10-20% surcharge on all contractor invoices.",
+                tradResult: "Inflated Costs",
+                nisusTitle: "Nisus Strategy",
+                nisusQuote: "Zero markups on maintenance. We pass our volume discounts directly to you.",
+                nisusResult: "Lower OpEx"
+            },
+            financials: {
+                tradTitle: "Traditional Manager",
+                tradQuote: "You'll get a PDF statement sometime next month.",
+                tradResult: "Delayed Visibility",
+                nisusTitle: "Nisus Strategy",
+                nisusQuote: "Real-time owner portal access. See rent paid, expenses log, and deposits instantly.",
+                nisusResult: "100% Transparency"
+            },
+            legal: {
+                tradTitle: "Traditional Manager",
+                tradQuote: "Evictions are your problem and your legal expense.",
+                tradResult: "High Liability",
+                nisusTitle: "Nisus Strategy",
+                nisusQuote: "We offer Eviction Protection. If we place them, we cover the legal costs to remove them.",
+                nisusResult: "Risk Mitigation"
+            }
+        };
+
+        function renderComparison(tab) {
+            const data = comparisonData[tab];
+            const container = document.getElementById('comparison-container');
+            
+            container.innerHTML = `
+                <div class="comp-card traditional">
+                    <div class="comp-header">
+                        <i data-lucide="x-circle" style="color:#f87171"></i>
+                        <h3>${data.tradTitle}</h3>
+                    </div>
+                    <div class="quote-box">"${data.tradQuote}"</div>
+                    <div class="result-box">${data.tradResult}</div>
+                </div>
+                <div class="comp-card nisus">
+                    <div class="comp-header">
+                        <i data-lucide="check-circle-2" style="color:var(--lime)"></i>
+                        <h3>${data.nisusTitle}</h3>
+                    </div>
+                    <div class="quote-box">"${data.nisusQuote}"</div>
+                    <div class="result-box">${data.nisusResult}</div>
+                </div>
+            `;
+            // Re-initialize icons for the new content
+            lucide.createIcons();
+        }
+
+        // Define global switchTab to fix ReferenceError
+        window.switchTab = function(tab, btn) {
+            // UI Update
+            if (btn) {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+            
+            // Render
+            renderComparison(tab);
+        };
+
+        // --- LANGUAGE LOGIC ---
+        const translations = {
+            en: {
+                // Updated Nav Keys
+                nav_comp: "Comparison",
+                nav_process: "Process",
+                nav_services: "Services",
+                nav_growth: "Growth",
+                nav_contact: "Contact",
+                
+                hero_badge: "For Local & Out-of-State Investors",
+                hero_title: "Stress-Free Property Management in <span class='text-highlight'>Detroit, Cleveland & Toledo</span>",
+                hero_desc: "We handle the tenants, the maintenance, and the legalities so you can focus on scaling your portfolio from anywhere in the world.",
+                hero_cta_primary: "Get Free Valuation",
+                hero_cta_secondary: "ROI Calculator",
+                status_rent_due: "Rent Due",
+                status_collected: "Collected",
+                status_vacant: "Vacant",
+                status_rented: "Rented",
+                status_reported: "Reported",
+                status_fixed: "Fixed",
+                badge_comparison: "Comparison",
+                title_reality: "The Reality Check",
+                desc_reality: "Select a service area to see the difference.",
+                
+                // New Keys
+                bullet_expenses: "Detailed Expense Categorization",
+                bullet_reports: "On-Demand Tax Reports",
+                btn_access_portal: "Get Portal Access",
+
+                // Peace of Mind Bullets
+                bullet_peace_1: "Detailed Reports",
+                bullet_peace_2: "Regular Safety Inspections",
+
+                tab_placement: "Tenant Placement",
+                tab_maintenance: "Maintenance",
+                tab_financials: "Financials",
+                tab_legal: "Legal",
+                badge_process: "Process",
+                title_how: "How We Work",
+                desc_how: "From onboarding to passive income in 4 steps.",
+                step1_title: "1. Evaluation",
+                step1_desc: "We analyze your property's rental potential and compliance needs.",
+                step2_title: "2. Onboarding",
+                step2_desc: "We handle LLCs, bank accounts, and seamless property takeover.",
+                step3_title: "3. Placement",
+                step3_desc: "Marketing, rigorous screening, and swift tenant placement.",
+                step4_title: "4. Management",
+                step4_desc: "Monthly reports, 24/7 maintenance, and direct deposits.",
+                btn_journey: "Start Your Journey",
+                badge_peace: "PEACE OF MIND",
+                title_eyes: "Your Eyes and Ears",
+                title_ground: "On The Ground",
+                desc_eyes: "You shouldn't have to guess the condition of your investment. We perform rigorous move-in and move-out inspections, complete with photos, to ensure your property is respected and maintained.",
+                badge_screening: "SCREENING",
+                title_quality: "Quality Residents,",
+                title_income: "Reliable Income",
+                desc_quality: "We don't just fill units; we find the right people. Our rigorous screening process checks credit, income, criminal background, and past rental history to ensure you get paid on time, every time.",
+                btn_criteria: "See Our Criteria",
+                badge_guaranteed: "RENTA GARANTIZADA",
+                title_sec8: "Section 8 Specialists",
+                desc_sec8: "Navigating government housing programs can be complex, but the rewards are consistent, guaranteed income. We handle the initial inspections, paperwork, and ongoing compliance.",
+                sec8_guarantee: "Government Guaranteed",
+                sec8_deposit: "Consistent monthly payments via Direct Deposit",
+                badge_portal: "PORTAL",
+                title_financial: "Total Financial",
+                title_transparency: "Transparency",
+                desc_financial: "Know exactly where your money is at all times. Our owner portal gives you real-time updates on rent collection, expenses, and deposits.",
+                badge_services: "SERVICES",
+                title_comprehensive: "Comprehensive Services",
+                badge_growth: "GROWTH",
+                title_ready: "Ready to Grow Your",
+                title_portfolio: "Portfolio?",
+                desc_growth: "Beyond management, we are active investors and brokers. Gain access to exclusive off-market deals and expert guidance to scale your holdings.",
+                btn_view_inv: "View Investment Opportunities",
+                btn_talk_broker: "Call Us", // Changed from "Talk to a Broker"
+                footer_desc: "Your partner for building generational wealth through intelligent real estate investment and management.",
+                footer_services: "Services",
+                footer_cities: "Cities",
+                footer_legal: "Legal",
+                modal_title: "Get Started with Nisus",
+                modal_desc: "Fill out the form below and we'll get back to you within 24 hours.",
+                form_name: "Full Name",
+                form_phone: "Phone",
+                form_email: "Email",
+                form_market: "Target Market",
+                form_prop_type: "Primary Property Type",
+                form_submit: "Submit Application",
+                legal_title: "Legal Information",
+                legal_privacy: "Privacy Policy",
+                legal_terms: "Terms of Service",
+                legal_cookies: "Cookie Policy"
+            },
+            es: {
+                // Updated Nav Keys
+                nav_comp: "Comparación",
+                nav_process: "Proceso",
+                nav_services: "Servicios",
+                nav_growth: "Crecimiento",
+                nav_contact: "Contacto",
+
+                hero_badge: "Para Inversores Locales y Extranjeros",
+                hero_title: "Administración de Propiedades Sin Estrés en <span class='text-highlight'>Detroit, Cleveland y Toledo</span>",
+                hero_desc: "Manejamos los inquilinos, el mantenimiento y los aspectos legales para que puedas escalar tu portafolio desde cualquier lugar del mundo.",
+                hero_cta_primary: "Valoración Gratuita",
+                hero_cta_secondary: "Calculadora ROI",
+                status_rent_due: "Renta Debida",
+                status_collected: "Cobrada",
+                status_vacant: "Vacante",
+                status_rented: "Rentada",
+                status_reported: "Reportado",
+                status_fixed: "Reparado",
+                badge_comparison: "Comparación",
+                title_reality: "La Realidad",
+                desc_reality: "Selecciona un área de servicio para ver la diferencia.",
+
+                // New Keys
+                bullet_expenses: "Categorización Detallada de Gastos",
+                bullet_reports: "Informes Fiscales a la Carta",
+                btn_access_portal: "Obtener Acceso al Portal",
+
+                // Peace of Mind Bullets
+                bullet_peace_1: "Informes Detallados",
+                bullet_peace_2: "Inspecciones de Seguridad Regulares",
+
+                tab_placement: "Colocación",
+                tab_maintenance: "Mantenimiento",
+                tab_financials: "Finanzas",
+                tab_legal: "Legal",
+                badge_process: "Proceso",
+                title_how: "Cómo Trabajamos",
+                desc_how: "Desde la incorporación hasta el ingreso pasivo en 4 pasos.",
+                step1_title: "1. Evaluación",
+                step1_desc: "Analizamos el potencial de alquiler y cumplimiento de tu propiedad.",
+                step2_title: "2. Incorporación",
+                step2_desc: "Manejamos LLCs, cuentas bancarias y la toma de posesión.",
+                step3_title: "3. Colocación",
+                step3_desc: "Marketing, selección rigurosa y colocación rápida de inquilinos.",
+                step4_title: "4. Gestión",
+                step4_desc: "Informes mensuales, mantenimiento 24/7 y depósitos directos.",
+                btn_journey: "Comienza Tu Viaje",
+                badge_peace: "TRANQUILIDAD",
+                title_eyes: "Tus Ojos y Oídos",
+                title_ground: "En El Terreno",
+                desc_eyes: "No deberías adivinar la condición de tu inversión. Realizamos inspecciones rigurosas de entrada y salida, con fotos, para asegurar que tu propiedad sea respetada.",
+                badge_screening: "SELECCIÓN",
+                title_quality: "Residentes de Calidad,",
+                title_income: "Ingreso Confiable",
+                desc_quality: "No solo llenamos unidades; encontramos a las personas adecuadas. Nuestro proceso riguroso verifica crédito, ingresos y antecedentes penales.",
+                btn_criteria: "Ver Criterios",
+                badge_guaranteed: "RENTA GARANTIZADA",
+                title_sec8: "Especialistas en Sección 8",
+                desc_sec8: "Navegar programas de vivienda del gobierno es complejo, pero las recompensas son ingresos garantizados. Manejamos las inspecciones y el cumplimiento.",
+                sec8_guarantee: "Garantizado por Gobierno",
+                sec8_deposit: "Pagos mensuales constantes vía Depósito Directo",
+                badge_portal: "PORTAL",
+                title_financial: "Transparencia Financiera",
+                title_transparency: "Total",
+                desc_financial: "Sabe exactamente dónde está tu dinero. Nuestro portal de propietarios te da actualizaciones en tiempo real sobre cobro de rentas y gastos.",
+                badge_services: "SERVICIOS",
+                title_comprehensive: "Servicios Integrales",
+                badge_growth: "CRECIMIENTO",
+                title_ready: "Listo para Crecer Tu",
+                title_portfolio: "Portafolio?",
+                desc_growth: "Más allá de la gestión, somos inversores activos. Accede a ofertas exclusivas fuera del mercado y guía experta para escalar.",
+                btn_view_inv: "Ver Oportunidades",
+                btn_talk_broker: "Llámenos", // Changed from "Hablar con un Agente"
+                footer_desc: "Tu socio para construir riqueza generacional a través de inversión y gestión inteligente de bienes raíces.",
+                footer_services: "Servicios",
+                footer_cities: "Ciudades",
+                footer_legal: "Legal",
+                modal_title: "Empieza con Nisus",
+                modal_desc: "Llena el formulario y te contactaremos en 24 horas.",
+                form_name: "Nombre Completo",
+                form_phone: "Teléfono",
+                form_email: "Correo",
+                form_market: "Mercado Objetivo",
+                form_prop_type: "Tipo de Propiedad",
+                form_submit: "Enviar Aplicación",
+                legal_title: "Información Legal",
+                legal_privacy: "Política de Privacidad",
+                legal_terms: "Términos de Servicio",
+                legal_cookies: "Política de Cookies"
+            }
+        };
+
+        let currentLang = 'en';
+
+        window.toggleLanguage = function() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            const btn = document.getElementById('lang-btn');
+            
+            // Update Button Content
+            if (currentLang === 'en') {
+                btn.innerHTML = `<svg class="flag-icon"><use href="#flag-us"></use></svg><span>EN</span>`;
+            } else {
+                btn.innerHTML = `<svg class="flag-icon"><use href="#flag-mx"></use></svg><span>ES</span>`;
+            }
+            
+            // Translate Content
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
+        // Initialize default tab content
+        document.addEventListener('DOMContentLoaded', () => {
+            renderComparison('placement');
+        });
+
+    </script>
+</body>
+</html>
