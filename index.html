@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+        /* --- KEEPING YOUR EXISTING CSS EXACTLY AS IS --- */
         /* --- 1. VARIABLES & RESET --- */
         :root {
             --navy: #173750;
@@ -690,7 +692,6 @@
 </head>
 <body>
     
-    <!-- SVG Defs for Flags -->
     <svg style="display: none;">
         <symbol id="flag-us" viewBox="0 0 640 480">
             <g fill-rule="evenodd">
@@ -715,27 +716,26 @@
 
     <nav id="navbar">
         <div class="flex justify-between items-center">
-            <!-- Logo anchored to top of page -->
             <a href="#" style="z-index: 1001;">
-                <img src="https://i0.wp.com/nisusrealestate.com/wp-content/uploads/2021/02/Nisus-logo.webp?fit=197%2C60&ssl=1" alt="Nisus Logo" class="nav-logo">
+                <img src="https://i0.wp.com/nisusrealestate.com/wp-content/uploads/2021/02/Nisus-logo.webp?fit=197%2C60&ssl=1" 
+                     alt="Nisus Logo" 
+                     class="nav-logo"
+                     data-editable="image"
+                     data-prop-src="nav_logo">
             </a>
 
             <div class="nav-links">
-                <!-- Updated Navigation Links -->
                 <a href="#comparison" class="nav-link" data-i18n="nav_comp">Comparison</a>
                 <a href="#how-it-works" class="nav-link" data-i18n="nav_process">Process</a>
                 <a href="#management" class="nav-link" data-i18n="nav_services">Services</a>
                 <a href="#roi-calculator" class="nav-link" data-i18n="nav_growth">Growth</a>
                 
-                <!-- Contact Button -->
                 <a href="#contact" class="btn-contact open-modal" data-i18n="nav_contact">Contact</a>
                 
-                <!-- New Phone Icon Link -->
                 <a href="tel:+17342624243" style="color: white; opacity: 0.9; transition: 0.3s; display: flex; align-items: center;" onmouseover="this.style.color='var(--lime)'" onmouseout="this.style.color='white'">
                     <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
                 </a>
 
-                <!-- Language Toggle -->
                 <button class="lang-toggle" onclick="toggleLanguage()" id="lang-btn">
                     <svg class="flag-icon"><use href="#flag-us"></use></svg>
                     <span>EN</span>
@@ -759,7 +759,6 @@
         </div>
     </nav>
 
-    <!-- Floating Actions -->
     <div class="floating-actions">
         <a href="https://wa.me/15551234567" class="float-btn btn-whatsapp" target="_blank" data-tooltip="WhatsApp">
             <i data-lucide="message-circle"></i>
@@ -781,12 +780,14 @@
             <div>
                 <div class="hero-badge">
                     <span class="dot"></span>
-                    <span data-i18n="hero_badge">For Local & Out-of-State Investors</span>
+                    <span data-i18n="hero_badge" data-editable="text" data-prop="hero_badge">For Local & Out-of-State Investors</span>
                 </div>
-                <h1 data-i18n="hero_title">Stress-Free Property Management in <span class="text-highlight">Detroit, Cleveland & Toledo</span></h1>
-                <p data-i18n="hero_desc">We handle the tenants, the maintenance, and the legalities so you can focus on scaling your portfolio from anywhere in the world.</p>
+                <h1 data-i18n="hero_title" data-editable="text" data-prop="hero_title">Stress-Free Property Management in <span class="text-highlight">Detroit, Cleveland & Toledo</span></h1>
+                
+                <p data-i18n="hero_desc" data-editable="text" data-prop="hero_desc">We handle the tenants, the maintenance, and the legalities so you can focus on scaling your portfolio from anywhere in the world.</p>
+                
                 <div class="flex flex-col md-row" style="gap: 1rem;">
-                    <button class="btn-primary open-modal" data-i18n="hero_cta_primary">Get Free Valuation</button>
+                    <button class="btn-primary open-modal" data-i18n="hero_cta_primary" data-editable="text" data-prop="hero_cta_primary">Get Free Valuation</button>
                     <a href="#roi-calculator" class="btn-outline">
                         <span data-i18n="hero_cta_secondary">ROI Calculator</span> <i data-lucide="calculator" style="width: 1rem;"></i>
                     </a>
@@ -797,20 +798,16 @@
 
             <div class="desktop-only hidden-md block-md">
                 <div class="radar-wrapper">
-                    <!-- Rings (Globe Style) -->
                     <div class="holo-ring ring-outer"></div>
                     <div class="holo-ring ring-inner"></div>
                     
-                    <!-- Core -->
                     <div class="radar-core"></div>
                     <div class="radar-dot"></div>
 
-                    <!-- Radar Scans -->
                     <div class="radar-scan scan-1"></div>
                     <div class="radar-scan scan-2"></div>
                     <div class="radar-scan scan-3"></div>
 
-                    <!-- CARD 1: Rent -->
                     <div class="status-container anim-cycle anim-delay-1" style="top: 25%; left: 15%;">
                         <div class="status-card">
                             <span class="status-label">123 Oak St</span>
@@ -826,7 +823,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD 2: Vacancy -->
                     <div class="status-container anim-cycle anim-delay-2" style="top: 20%; right: 10%;">
                         <div class="status-card">
                             <span class="status-label">456 Maple</span>
@@ -842,7 +838,6 @@
                         </div>
                     </div>
 
-                    <!-- CARD 3: Maintenance -->
                     <div class="status-container anim-cycle anim-delay-3" style="bottom: 25%; right: 15%;">
                         <div class="status-card">
                             <span class="status-label">789 Pine</span>
@@ -862,14 +857,13 @@
         </div>
     </section>
 
-    <!-- Added ID="comparison" for the new nav link -->
     <section id="comparison" class="section-py">
         <div class="container">
             <div class="text-center">
                 <div class="pill-badge dark-mode" data-i18n="badge_comparison">Comparison</div>
-                <h2 class="section-title text-navy" data-i18n="title_reality">The Reality Check</h2>
+                <h2 class="section-title text-navy" data-i18n="title_reality" data-editable="text">The Reality Check</h2>
                 <div class="section-bar"></div>
-                <p class="section-desc-lg text-muted-dark" style="margin: 1rem auto 3rem auto;" data-i18n="desc_reality">Select a service area to see the difference.</p>
+                <p class="section-desc-lg text-muted-dark" style="margin: 1rem auto 3rem auto;" data-i18n="desc_reality" data-editable="text">Select a service area to see the difference.</p>
             </div>
 
             <div class="tabs-scroll-container">
@@ -882,19 +876,17 @@
             </div>
 
             <div id="comparison-container" class="comparison-grid">
-                <!-- Content injected via JS -->
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- How We Work -->
     <section id="how-it-works" class="section-py bg-navy">
         <div class="container">
             <div class="flex flex-col md-row justify-between items-center" style="margin-bottom: 4rem;">
                 <div>
                     <div class="pill-badge" data-i18n="badge_process">Process</div>
-                    <h2 class="section-title text-white" data-i18n="title_how">How We Work</h2>
-                    <p class="text-muted-light section-desc-lg" style="margin-bottom: 0;" data-i18n="desc_how">From onboarding to passive income in 4 steps.</p>
+                    <h2 class="section-title text-white" data-i18n="title_how" data-editable="text">How We Work</h2>
+                    <p class="text-muted-light section-desc-lg" style="margin-bottom: 0;" data-i18n="desc_how" data-editable="text">From onboarding to passive income in 4 steps.</p>
                 </div>
             </div>
 
@@ -903,23 +895,23 @@
                 <div class="grid grid-4 hiw-grid">
                     <div class="step-card-dark">
                         <div class="step-icon-glow"><i data-lucide="search"></i></div>
-                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step1_title">1. Evaluation</h4>
-                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step1_desc">We analyze your property's rental potential and compliance needs.</p>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step1_title" data-editable="text" data-prop="step1_title">1. Evaluation</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step1_desc" data-editable="text" data-prop="step1_desc">We analyze your property's rental potential and compliance needs.</p>
                     </div>
                     <div class="step-card-dark">
                         <div class="step-icon-glow"><i data-lucide="clipboard-check"></i></div>
-                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step2_title">2. Onboarding</h4>
-                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step2_desc">We handle LLCs, bank accounts, and seamless property takeover.</p>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step2_title" data-editable="text" data-prop="step2_title">2. Onboarding</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step2_desc" data-editable="text" data-prop="step2_desc">We handle LLCs, bank accounts, and seamless property takeover.</p>
                     </div>
                     <div class="step-card-dark">
                         <div class="step-icon-glow"><i data-lucide="user-check"></i></div>
-                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step3_title">3. Placement</h4>
-                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step3_desc">Marketing, rigorous screening, and swift tenant placement.</p>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step3_title" data-editable="text" data-prop="step3_title">3. Placement</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step3_desc" data-editable="text" data-prop="step3_desc">Marketing, rigorous screening, and swift tenant placement.</p>
                     </div>
                     <div class="step-card-dark">
                         <div class="step-icon-glow"><i data-lucide="pie-chart"></i></div>
-                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step4_title">4. Management</h4>
-                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step4_desc">Monthly reports, 24/7 maintenance, and direct deposits.</p>
+                        <h4 style="font-weight: 700; color: white; margin-bottom: 0.5rem;" data-i18n="step4_title" data-editable="text" data-prop="step4_title">4. Management</h4>
+                        <p style="font-size: 0.875rem; color: #94a3b8;" data-i18n="step4_desc" data-editable="text" data-prop="step4_desc">Monthly reports, 24/7 maintenance, and direct deposits.</p>
                     </div>
                 </div>
             </div>
@@ -930,42 +922,41 @@
         </div>
     </section>
 
-    <!-- PROACTIVE CARE SECTION -->
     <section class="section-py bg-navy" style="color:white; border-top: 1px solid rgba(255,255,255,0.05);">
         <div class="container visual-grid">
             
-            <!-- Text Content -->
             <div>
                 <div class="pill-badge" data-i18n="badge_peace">PEACE OF MIND</div>
-                <h2 class="section-title">
+                <h2 class="section-title" data-editable="text" data-prop="title_eyes">
                     <span data-i18n="title_eyes">Your Eyes and Ears</span> <span class="text-lime" data-i18n="title_ground">On The Ground</span>
                 </h2>
-                <p class="text-muted-light section-desc-lg" data-i18n="desc_eyes">
+                <p class="text-muted-light section-desc-lg" data-i18n="desc_eyes" data-editable="text" data-prop="desc_eyes">
                     You shouldn't have to guess the condition of your investment. We perform rigorous move-in and move-out inspections, complete with photos, to ensure your property is respected and maintained.
                 </p>
 
-                <!-- NEW: Bullet Points -->
                 <ul style="margin-top: 2rem;">
                     <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
                         <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="camera" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
                         </div>
-                        <span data-i18n="bullet_peace_1">Detailed Reports</span>
+                        <span data-i18n="bullet_peace_1" data-editable="text" data-prop="bullet_peace_1">Detailed Reports</span>
                     </li>
                     <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
                         <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="shield-check" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
                         </div>
-                        <span data-i18n="bullet_peace_2">Regular Safety Inspections</span>
+                        <span data-i18n="bullet_peace_2" data-editable="text" data-prop="bullet_peace_2">Regular Safety Inspections</span>
                     </li>
                 </ul>
             </div>
 
-            <!-- Visual: House Inspection Scan -->
             <div class="house-scanner-container">
-                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1000&auto=format&fit=crop" alt="House Scan" class="house-img">
+                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1000&auto=format&fit=crop" 
+                     alt="House Scan" 
+                     class="house-img"
+                     data-editable="image"
+                     data-prop-src="house_scan_img">
                 <div class="scan-bar"></div>
-                <!-- Hotspots -->
                 <div class="hotspot hs-roof">
                     <span class="hotspot-label">Roof Inspection</span>
                     <span class="hotspot-val val-good"><i data-lucide="check-circle-2" size="14"></i> GOOD CONDITION</span>
@@ -982,10 +973,8 @@
         </div>
     </section>
 
-    <!-- QUALITY RESIDENTS -->
     <section class="section-py bg-white">
         <div class="container visual-grid">
-            <!-- Visual Card (Navy BG) -->
             <div class="visual-card-navy">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:1rem;">
                     <span style="font-weight:700; font-size:1.1rem;">Applicant Scorecard</span>
@@ -1006,11 +995,10 @@
                 </div>
             </div>
 
-            <!-- Text (Dark Text on White BG) -->
             <div>
                 <div class="pill-badge dark-mode" data-i18n="badge_screening">SCREENING</div>
-                <h2 class="section-title text-navy"><span data-i18n="title_quality">Quality Residents,</span> <span style="color:var(--lime-dim);" data-i18n="title_income">Reliable Income</span></h2>
-                <p class="text-muted-dark section-desc-lg" data-i18n="desc_quality">
+                <h2 class="section-title text-navy" data-editable="text"><span data-i18n="title_quality">Quality Residents,</span> <span style="color:var(--lime-dim);" data-i18n="title_income">Reliable Income</span></h2>
+                <p class="text-muted-dark section-desc-lg" data-i18n="desc_quality" data-editable="text">
                     We don't just fill units; we find the right people. Our rigorous screening process checks credit, income, criminal background, and past rental history to ensure you get paid on time, every time.
                 </p>
                 <button class="btn-primary open-modal" data-i18n="btn_criteria">See Our Criteria</button>
@@ -1018,70 +1006,61 @@
         </div>
     </section>
 
-    <!-- SECTION 8 SPECIALISTS (Flipped) -->
     <section class="section-py bg-offwhite">
         <div class="container visual-grid">
-             <!-- Text (First) -->
              <div class="md:order-last">
                 <div class="pill-badge dark-mode" data-i18n="badge_guaranteed">GUARANTEED RENT</div>
-                <h2 class="section-title text-navy" data-i18n="title_sec8">Section 8 Specialists</h2>
-                <p class="text-muted-dark section-desc-lg" data-i18n="desc_sec8">
+                <h2 class="section-title text-navy" data-i18n="title_sec8" data-editable="text">Section 8 Specialists</h2>
+                <p class="text-muted-dark section-desc-lg" data-i18n="desc_sec8" data-editable="text">
                     Navigating government housing programs can be complex, but the rewards are consistent, guaranteed income. We handle the initial inspections, paperwork, and ongoing compliance so you enjoy the stability without the headache.
                 </p>
             </div>
-             <!-- Visual (Second) -->
              <div class="visual-card-navy md:order-first" style="background:#173750;">
                 <div style="text-align: center; padding: 2rem 0;">
                     <div style="background: rgba(255,255,255,0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
                         <i data-lucide="landmark" size="40" style="color: var(--lime);"></i>
                     </div>
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="sec8_guarantee">Government Guaranteed</h3>
-                    <p style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="sec8_deposit">Consistent monthly payments via Direct Deposit</p>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="sec8_guarantee" data-editable="text">Government Guaranteed</h3>
+                    <p style="color: #cbd5e1; font-size: 0.9rem;" data-i18n="sec8_deposit" data-editable="text">Consistent monthly payments via Direct Deposit</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PORTFOLIO CLARITY -->
     <section class="section-py bg-navy">
         <div class="container visual-grid" style="grid-template-columns: 1fr 1fr; direction: rtl;">
-            <!-- Visual -->
             <div class="visual-card-pop" style="direction: ltr;">
                 <div style="display:flex; justify-content:space-between; margin-bottom:1.5rem;">
                     <h4 style="font-weight:700;">Rent Collection Status</h4>
-                    <!-- Removed View Portal Link -->
-                </div>
+                    </div>
                 <div class="list-row"><div><div style="font-weight:600; color:white;">123 Oak St</div><div style="font-size:0.75rem; color:#64748b;">Detroit, MI</div></div><span class="status-badge badge-success">PAID ON TIME</span></div>
                 <div class="list-row"><div><div style="font-weight:600; color:white;">456 Maple Ave</div><div style="font-size:0.75rem; color:#64748b;">Toledo, OH</div></div><span class="status-badge badge-success">PAID ON TIME</span></div>
                 <div class="list-row"><div><div style="font-weight:600; color:white;">789 Pine St</div><div style="font-size:0.75rem; color:#64748b;">Cleveland, OH</div></div><span class="status-badge badge-pending">EXTENSION</span></div>
                 <div class="list-row"><div><div style="font-weight:600; color:white;">321 Elm St</div><div style="font-size:0.75rem; color:#64748b;">Detroit, MI</div></div><span class="status-badge badge-danger">LATE (2 DAYS)</span></div>
             </div>
 
-            <!-- Text -->
             <div style="direction: ltr;">
                 <div class="pill-badge" data-i18n="badge_portal">PORTAL</div>
-                <h2 class="section-title text-white"><span data-i18n="title_financial">Total Financial</span> <span class="text-lime" data-i18n="title_transparency">Transparency</span></h2>
-                <p class="text-muted-light section-desc-lg" data-i18n="desc_financial">
+                <h2 class="section-title text-white" data-editable="text"><span data-i18n="title_financial">Total Financial</span> <span class="text-lime" data-i18n="title_transparency">Transparency</span></h2>
+                <p class="text-muted-light section-desc-lg" data-i18n="desc_financial" data-editable="text">
                     Know exactly where your money is at all times. Our owner portal gives you real-time updates on rent collection, expenses, and deposits. No more wondering if the check is in the mail.
                 </p>
 
-                <!-- NEW: Bullet Points -->
                 <ul style="margin-bottom: 2rem;">
                     <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
                         <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="receipt" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
                         </div>
-                        <span data-i18n="bullet_expenses">Detailed Expense Categorization</span>
+                        <span data-i18n="bullet_expenses" data-editable="text">Detailed Expense Categorization</span>
                     </li>
                     <li style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; color: #cbd5e1;">
                         <div style="background: rgba(182, 201, 71, 0.2); padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                             <i data-lucide="file-down" style="color: var(--lime); width: 1rem; height: 1rem;"></i>
                         </div>
-                        <span data-i18n="bullet_reports">On-Demand Tax Reports</span>
+                        <span data-i18n="bullet_reports" data-editable="text">On-Demand Tax Reports</span>
                     </li>
                 </ul>
 
-                <!-- NEW: CTA Button -->
                 <button class="btn-primary open-modal" data-i18n="btn_access_portal">Get Portal Access</button>
             </div>
         </div>
@@ -1091,45 +1070,40 @@
         <div class="container">
             <div class="text-center">
                 <div class="pill-badge dark-mode" data-i18n="badge_services">SERVICES</div>
-                <h2 class="section-title text-navy" data-i18n="title_comprehensive">Comprehensive Services</h2>
+                <h2 class="section-title text-navy" data-i18n="title_comprehensive" data-editable="text">Comprehensive Services</h2>
                 <div class="section-bar"></div>
             </div>
 
             <div class="grid grid-services" style="margin-top: 3rem;">
-                <div class="service-card"><div class="service-header"><h3>Management</h3><div class="service-icon-box"><i data-lucide="building"></i></div></div><ul class="service-list"><li>Vacancy marketing</li><li>Tenant selection</li><li>Rent collections</li><li>24/7 maintenance</li></ul><i data-lucide="building" class="bg-icon-decor"></i></div>
-                <div class="service-card"><div class="service-header"><h3>Maintenance</h3><div class="service-icon-box"><i data-lucide="wrench"></i></div></div><ul class="service-list"><li>Inspections</li><li>Rent collections</li><li>Property insurance</li><li>Utilities management</li></ul><i data-lucide="wrench" class="bg-icon-decor"></i></div>
-                <div class="service-card"><div class="service-header"><h3>Support</h3><div class="service-icon-box"><i data-lucide="shield"></i></div></div><ul class="service-list"><li>LLC creation</li><li>Bank accounts</li><li>Legal & Tax support</li><li>Investor portal</li></ul><i data-lucide="shield" class="bg-icon-decor"></i></div>
-                <div class="service-card"><div class="service-header"><h3>Section 8</h3><div class="service-icon-box"><i data-lucide="landmark"></i></div></div><ul class="service-list"><li>Inspection Handling</li><li>Voucher Processing</li><li>Compliance Checks</li><li>Direct Deposit</li></ul><i data-lucide="landmark" class="bg-icon-decor"></i></div>
-                <div class="service-card"><div class="service-header"><h3>Investments</h3><div class="service-icon-box"><i data-lucide="trending-up"></i></div></div><ul class="service-list"><li>Investment advice</li><li>Market analysis</li><li>Portfolio strategy</li><li>ROI Modeling</li></ul><i data-lucide="trending-up" class="bg-icon-decor"></i></div>
-                <div class="service-card"><div class="service-header"><h3>Sale</h3><div class="service-icon-box"><i data-lucide="bar-chart-3"></i></div></div><ul class="service-list"><li>Appraisal</li><li>Strategic Marketing</li><li>Brokerage services</li><li>Exit strategy</li></ul><i data-lucide="bar-chart-3" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="text">Management</h3><div class="service-icon-box"><i data-lucide="building"></i></div></div><ul class="service-list" data-editable="text"><li>Vacancy marketing</li><li>Tenant selection</li><li>Rent collections</li><li>24/7 maintenance</li></ul><i data-lucide="building" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="text">Maintenance</h3><div class="service-icon-box"><i data-lucide="wrench"></i></div></div><ul class="service-list" data-editable="text"><li>Inspections</li><li>Rent collections</li><li>Property insurance</li><li>Utilities management</li></ul><i data-lucide="wrench" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="text">Support</h3><div class="service-icon-box"><i data-lucide="shield"></i></div></div><ul class="service-list" data-editable="text"><li>LLC creation</li><li>Bank accounts</li><li>Legal & Tax support</li><li>Investor portal</li></ul><i data-lucide="shield" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="text">Section 8</h3><div class="service-icon-box"><i data-lucide="landmark"></i></div></div><ul class="service-list" data-editable="text"><li>Inspection Handling</li><li>Voucher Processing</li><li>Compliance Checks</li><li>Direct Deposit</li></ul><i data-lucide="landmark" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="text">Investments</h3><div class="service-icon-box"><i data-lucide="trending-up"></i></div></div><ul class="service-list" data-editable="text"><li>Investment advice</li><li>Market analysis</li><li>Portfolio strategy</li><li>ROI Modeling</li></ul><i data-lucide="trending-up" class="bg-icon-decor"></i></div>
+                <div class="service-card"><div class="service-header"><h3 data-editable="text">Sale</h3><div class="service-icon-box"><i data-lucide="bar-chart-3"></i></div></div><ul class="service-list" data-editable="text"><li>Appraisal</li><li>Strategic Marketing</li><li>Brokerage services</li><li>Exit strategy</li></ul><i data-lucide="bar-chart-3" class="bg-icon-decor"></i></div>
             </div>
         </div>
     </section>
 
-    <!-- GROWTH / INVESTMENT SECTION -->
     <section id="roi-calculator" class="section-py bg-navy" style="border-top: 1px solid rgba(255,255,255,0.05);">
         <div class="container visual-grid">
-            <!-- Text Content -->
             <div>
                 <div class="pill-badge" data-i18n="badge_growth">GROWTH</div>
-                <h2 class="section-title text-white"><span data-i18n="title_ready">Ready to Grow Your</span> <span class="text-lime" data-i18n="title_portfolio">Portfolio?</span></h2>
-                <p class="section-desc-lg text-muted-light" data-i18n="desc_growth">
+                <h2 class="section-title text-white" data-editable="text"><span data-i18n="title_ready">Ready to Grow Your</span> <span class="text-lime" data-i18n="title_portfolio">Portfolio?</span></h2>
+                <p class="section-desc-lg text-muted-light" data-i18n="desc_growth" data-editable="text">
                     Beyond management, we are active investors and brokers. Gain access to exclusive off-market deals and expert guidance to scale your holdings in Detroit and Ohio. We help you calculate true ROI before you buy.
                 </p>
                 <div class="flex gap-4">
                     <button class="btn-primary open-modal" data-i18n="btn_view_inv">View Investment Opportunities</button>
-                    <!-- UPDATED BUTTON -->
                     <a href="tel:+15551234567" class="btn-outline" data-i18n="btn_talk_broker">Call Us</a>
                 </div>
             </div>
 
-            <!-- Visual: ROI Calculator -->
             <div class="calculator-card visual-card-pop">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
                     <h3 style="font-size: 1.25rem; font-weight: 700;">Investment Analysis</h3>
                     <i data-lucide="calculator" style="color: var(--lime);"></i>
                 </div>
-                <!-- Sliders omitted for brevity, fully functional in JS -->
                 <div class="roi-input-group"><div class="roi-label"><span>Purchase Price</span><span id="label-price">$120,000</span></div><input type="range" min="50000" max="300000" step="5000" value="120000" class="roi-slider" id="input-price" oninput="calculateROI()"></div>
                 <div class="roi-input-group"><div class="roi-label"><span>Monthly Rent</span><span id="label-rent">$1,450</span></div><input type="range" min="500" max="3500" step="50" value="1450" class="roi-slider" id="input-rent" oninput="calculateROI()"></div>
                 <div class="roi-input-group"><div class="roi-label"><span>Renovation Cost</span><span id="label-reno">$15,000</span></div><input type="range" min="0" max="100000" step="1000" value="15000" class="roi-slider" id="input-reno" oninput="calculateROI()"></div>
@@ -1138,13 +1112,12 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="grid grid-4" style="margin-bottom: 3rem;">
                 <div>
-                    <img src="https://i0.wp.com/nisusrealestate.com/wp-content/uploads/2021/02/Nisus-logo.webp?fit=197%2C60&ssl=1" alt="Logo" class="nav-logo" style="filter: brightness(0) invert(1);">
-                    <p style="font-size: 0.875rem; line-height: 1.6; color: white; margin-top: 1rem;" data-i18n="footer_desc">Your partner for building generational wealth through intelligent real estate investment and management.</p>
+                    <img src="https://i0.wp.com/nisusrealestate.com/wp-content/uploads/2021/02/Nisus-logo.webp?fit=197%2C60&ssl=1" alt="Logo" class="nav-logo" style="filter: brightness(0) invert(1);" data-editable="image" data-prop-src="footer_logo">
+                    <p style="font-size: 0.875rem; line-height: 1.6; color: white; margin-top: 1rem;" data-i18n="footer_desc" data-editable="text">Your partner for building generational wealth through intelligent real estate investment and management.</p>
                 </div>
                 <div>
                     <h4 style="color:white; margin-bottom:1rem;" data-i18n="footer_services">Services</h4>
@@ -1178,7 +1151,6 @@
         </div>
     </footer>
 
-    <!-- CONTACT MODAL -->
     <div class="modal-overlay" id="contact-modal">
         <div class="modal-content">
             <button class="modal-close" id="close-modal-btn"><i data-lucide="x"></i></button>
@@ -1223,7 +1195,6 @@
         </div>
     </div>
 
-    <!-- LEGAL MODAL -->
     <div class="modal-overlay" id="legal-modal">
         <div class="legal-modal-content">
             <button class="modal-close" id="close-legal-btn"><i data-lucide="x"></i></button>
