@@ -1,11 +1,14 @@
-paths:
-  static: ''
-  uploads: uploads
-timezone: America/Phoenix
-markdown:
-  engine: commonmark
-  options: {}
+source: .
 collections_config:
   pages:
-    path: ''
-    icon: wysiwyg
+    path: .
+    glob:
+      - '*.html'
+    icon: notes
+    url: /[path]
+    disable_url: false
+    disable_add: false
+    disable_add_folder: false
+    disable_file_actions: false
+timezone: Etc/UTC
+output_path: .
