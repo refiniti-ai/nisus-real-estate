@@ -1,5 +1,7 @@
 {
-  "projects": {},
+  "projects": {
+    "default": "nisus-real-estate"
+  },
   "targets": {},
   "etags": {}
 }

@@ -164,7 +164,7 @@ function renderComparison(tab) {
     if (!container) return;
     
     // Determine if we are on the investment page
-    const isInvestPage = window.location.pathname.includes('investments.html');
+    const isInvestPage = window.location.pathname.includes('/investments');
     const prefix = isInvestPage ? 'inv_comp' : 'comp';
     
     const tradTitle = t.comp_trad_title;
@@ -242,7 +242,7 @@ window.toggleLanguage = function() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const isInvestPage = window.location.pathname.includes('investments.html');
+    const isInvestPage = window.location.pathname.includes('/investments');
     currentTab = isInvestPage ? 'sourcing' : 'placement';
     renderComparison(currentTab);
 });
