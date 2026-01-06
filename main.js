@@ -208,8 +208,9 @@ window.switchTab = function(tab, btn) {
 // --- LANGUAGE LOGIC ---
 let currentLang = 'en';
 
-window.toggleLanguage = function() {
-    currentLang = currentLang === 'en' ? 'es' : 'en';
+window.setLanguage = function(lang) {
+    currentLang = lang;
+    localStorage.setItem('preferredLang', lang);
     
     // Update all language toggle buttons
     const btns = document.querySelectorAll('.lang-toggle');
@@ -223,17 +224,14 @@ window.toggleLanguage = function() {
     
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (key.startsWith('[')) {
-            const parts = key.split(']');
-            const attr = parts[0].substring(1);
-            const actualKey = parts[1];
-            if (translations[currentLang][actualKey]) {
-                el.setAttribute(attr, translations[currentLang][actualKey]);
-            }
+        if (key && key.includes(';')) {
+            // Support multiple attributes/keys: [attr]key;[attr2]key2 or [attr]key;key2
+            const parts = key.split(';');
+            parts.forEach(part => {
+                applyTranslation(el, part.trim());
+            });
         } else {
-            if (translations[currentLang][key]) {
-                el.innerHTML = translations[currentLang][key];
-            }
+            applyTranslation(el, key);
         }
     });
 
@@ -241,8 +239,42 @@ window.toggleLanguage = function() {
     renderComparison(currentTab);
 }
 
+function applyTranslation(el, key) {
+    if (!key) return;
+    
+    if (key.startsWith('[')) {
+        const bracketEnd = key.indexOf(']');
+        const attr = key.substring(1, bracketEnd);
+        const actualKey = key.substring(bracketEnd + 1);
+        if (translations[currentLang] && translations[currentLang][actualKey]) {
+            el.setAttribute(attr, translations[currentLang][actualKey]);
+        }
+    } else {
+        if (translations[currentLang] && translations[currentLang][key]) {
+            el.innerHTML = translations[currentLang][key];
+        }
+    }
+}
+
+window.toggleLanguage = function() {
+    const newLang = currentLang === 'en' ? 'es' : 'en';
+    setLanguage(newLang);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    const isInvestPage = window.location.pathname.includes('/investments');
+    // Detect language from URL
+    const path = window.location.pathname;
+    const isSpanishPath = path === '/es' || path.startsWith('/es/');
+    const hasSpanishQuery = window.location.search.includes('lang=es');
+    
+    if (isSpanishPath || hasSpanishQuery) {
+        setLanguage('es');
+    } else {
+        const savedLang = localStorage.getItem('preferredLang');
+        if (savedLang) setLanguage(savedLang);
+    }
+
+    const isInvestPage = path.includes('/investments');
     currentTab = isInvestPage ? 'sourcing' : 'placement';
     renderComparison(currentTab);
 });

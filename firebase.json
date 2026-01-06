@@ -2,6 +2,10 @@
   "hosting": {
     "public": ".",
     "cleanUrls": true,
+    "rewrites": [
+      { "source": "/es", "destination": "/index.html" },
+      { "source": "/es/investments", "destination": "/investments.html" }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
