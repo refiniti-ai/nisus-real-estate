@@ -3,8 +3,8 @@
     "public": ".",
     "cleanUrls": true,
     "rewrites": [
-      { "source": "/es", "destination": "/index.html" },
-      { "source": "/es/investments", "destination": "/investments.html" }
+      { "source": "/es/investments", "destination": "/investments.html" },
+      { "source": "/es", "destination": "/index.html" }
     ],
     "ignore": [
       "firebase.json",

@@ -141,15 +141,15 @@ window.switchLocation = function(city, btn) {
     if (peaceImg) {
         // Map city to image path
         const cityImages = {
-            'detroit': 'Images/Detroit.webp',
-            'cleveland': 'Images/Cleveland.webp',
-            'toledo': 'Images/Toledo.webp'
+            'detroit': '/Images/Detroit.webp',
+            'cleveland': '/Images/Cleveland.webp',
+            'toledo': '/Images/Toledo.webp'
         };
         
         // Add a fade effect
         peaceImg.style.opacity = '0';
         setTimeout(() => {
-            peaceImg.src = cityImages[city] || 'Images/House Nisus.avif';
+            peaceImg.src = cityImages[city] || '/Images/House Nisus.avif';
             peaceImg.style.opacity = '1';
         }, 300);
     }
