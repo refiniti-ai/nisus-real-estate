@@ -1054,6 +1054,21 @@ nav.scrolled {
     max-height: 90vh;
     overflow-y: auto;
 }
+.modal-content .hs-form-frame,
+.modal-content .hs-form-frame iframe,
+.hs-form-frame,
+.hs-form-frame iframe {
+    width: 100%;
+    background: var(--navy) !important;
+}
+.modal-content {
+    background: var(--navy) !important;
+}
+.hubspot-form-wrapper .hs-form-frame,
+.hubspot-form-wrapper .hs-form-frame iframe {
+    background: var(--navy) !important;
+}
+
 @media (max-width: 640px) { .modal-content { padding: 1.5rem; } }
 
 .modal-overlay.open .modal-content { transform: scale(1); }

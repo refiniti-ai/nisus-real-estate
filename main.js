@@ -12,6 +12,33 @@ fbq('track', 'PageView');
 
 lucide.createIcons();
 
+// --- HUBSPOT FORM LANGUAGE TOGGLE ---
+// Show/hide HubSpot embedded forms based on current language
+function updateHubSpotForms(lang) {
+    const enForms = document.querySelectorAll('.hs-form-en');
+    const esForms = document.querySelectorAll('.hs-form-es');
+    
+    enForms.forEach(form => {
+        form.style.display = lang === 'en' ? 'block' : 'none';
+        form.style.background = '#0f2a3d';
+    });
+    
+    esForms.forEach(form => {
+        form.style.display = lang === 'es' ? 'block' : 'none';
+        form.style.background = '#0f2a3d';
+    });
+    
+    // Ensure all iframes and containers have navy background
+    document.querySelectorAll('.hs-form-frame, .hs-form-frame iframe, .modal-content, .hubspot-form-wrapper').forEach(el => {
+        el.style.background = '#0f2a3d';
+    });
+    
+    // Also target any dynamically created HubSpot elements
+    document.querySelectorAll('[class*="hs-"], [id*="hs-"]').forEach(el => {
+        el.style.background = '#0f2a3d';
+    });
+}
+
 // Navbar Scroll
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -237,6 +264,9 @@ window.setLanguage = function(lang) {
 
     // Update comparison table with new language
     renderComparison(currentTab);
+    
+    // Update HubSpot forms visibility based on language
+    updateHubSpotForms(lang);
 }
 
 function applyTranslation(el, key) {

@@ -28,6 +28,7 @@
     <meta property="twitter:image" content="https://nisusrealestate.com/Images/House%20Nisus.avif">
     
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://js.hsforms.net/forms/embed/14501146.js" defer></script>
     <link rel="stylesheet" href="/style.css">
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=290779669070030&ev=PageView&noscript=1"
@@ -242,144 +243,6 @@
         </div>
     </section>
 
-    <section id="locations" class="section-py bg-offwhite">
-        <div class="container">
-            <div class="text-center">
-                <div class="pill-badge dark-mode" data-i18n="badge_locations">LOCATIONS</div>
-                <h2 class="section-title text-navy">
-                    <span data-i18n="title_locations_main">Market</span> 
-                    <span class="text-lime" data-i18n="title_locations_highlight">Expertise</span>
-                </h2>
-                <div class="section-bar"></div>
-            </div>
-
-            <div class="location-tabs-container" style="margin-top: 3rem;">
-                <button class="loc-tab-btn active" onclick="switchLocation('detroit', this)">
-                    <i data-lucide="map-pin"></i>
-                    <span data-i18n="loc_detroit_title">Detroit</span>
-                </button>
-                <button class="loc-tab-btn" onclick="switchLocation('cleveland', this)">
-                    <i data-lucide="map-pin"></i>
-                    <span data-i18n="loc_cleveland_title">Cleveland</span>
-                </button>
-                <button class="loc-tab-btn" onclick="switchLocation('toledo', this)">
-                    <i data-lucide="map-pin"></i>
-                    <span data-i18n="loc_toledo_title">Toledo</span>
-                </button>
-            </div>
-
-            <div class="locations-display">
-                <!-- Detroit Pane -->
-                <div id="pane-detroit" class="location-pane active">
-                    <div class="location-card">
-                        <div class="location-content-grid">
-                            <div class="location-text">
-                                <div class="location-badge" data-i18n="state_mi">Michigan</div>
-                                <h3 class="section-title text-white" style="font-size: 2rem; margin-bottom: 1rem;" data-i18n="loc_detroit_market">Detroit Market</h3>
-                                <p data-i18n="detroit_expertise_desc">Metro Detroit property management requires deep knowledge of its diverse communities. Nisus tailors strategies to match neighborhood demand and property type.</p>
-                                <ul class="expertise-list">
-                                    <li data-i18n="detroit_area_1"><strong>Downtown & Midtown Detroit:</strong> High demand from young professionals for modern, urban living.</li>
-                                    <li data-i18n="detroit_area_2"><strong>Ferndale, Royal Oak & Berkley:</strong> Suburban families seeking long-term stability.</li>
-                                    <li data-i18n="detroit_area_3"><strong>Warren, Pontiac & Dearborn:</strong> Workforce housing demand, strong interest from Section 8 renters.</li>
-                                    <li data-i18n="detroit_area_4"><strong>Southfield & Oak Park:</strong> Multifamily investments with excellent ROI potential.</li>
-                                </ul>
-                            </div>
-                            <div class="location-image-wrapper">
-                                <div class="market-visual-bg"></div>
-                                <img src="/Images/Detroit.webp" alt="Detroit Market" class="location-img">
-                                <div class="market-stats-float">
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="trending-up"></i>
-                                        <span class="market-stat-label">Yield:</span> 8.5%
-                                    </div>
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="users"></i>
-                                        <span class="market-stat-label">Demand:</span> High
-                                    </div>
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="home"></i>
-                                        <span class="market-stat-label">Units:</span> 12k+ Managed
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cleveland Pane -->
-                <div id="pane-cleveland" class="location-pane">
-                    <div class="location-card">
-                        <div class="location-content-grid">
-                            <div class="location-text">
-                                <div class="location-badge" data-i18n="state_oh">Ohio</div>
-                                <h3 class="section-title text-white" style="font-size: 2rem; margin-bottom: 1rem;" data-i18n="loc_cleveland_market">Cleveland Market</h3>
-                                <p data-i18n="cleveland_expertise_desc">Nisus tailors management strategies to Cleveland and its surrounding neighborhoods:</p>
-                                <ul class="expertise-list">
-                                    <li data-i18n="cleveland_area_1"><strong>Downtown Cleveland & Flats:</strong> Urban professionals; corporate, trendy apartments.</li>
-                                    <li data-i18n="cleveland_area_2"><strong>Canton & Akron:</strong> Suburban families; long-term renters seeking consistent management.</li>
-                                    <li data-i18n="cleveland_area_3"><strong>East Cleveland & Buckeye-Woodhill:</strong> Long-term renters; workforce and Section 8 housing for families</li>
-                                </ul>
-                            </div>
-                            <div class="location-image-wrapper">
-                                <div class="market-visual-bg"></div>
-                                <img src="/Images/Cleveland.webp" alt="Cleveland Market" class="location-img">
-                                <div class="market-stats-float">
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="trending-up"></i>
-                                        <span class="market-stat-label">Yield:</span> 7.9%
-                                    </div>
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="users"></i>
-                                        <span class="market-stat-label">Demand:</span> Stable
-                                    </div>
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="building"></i>
-                                        <span class="market-stat-label">Growth:</span> +4.2%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Toledo Pane -->
-                <div id="pane-toledo" class="location-pane">
-                    <div class="location-card">
-                        <div class="location-content-grid">
-                            <div class="location-text">
-                                <div class="location-badge" data-i18n="state_oh">Ohio</div>
-                                <h3 class="section-title text-white" style="font-size: 2rem; margin-bottom: 1rem;" data-i18n="loc_toledo_market">Toledo Market</h3>
-                                <p data-i18n="toledo_expertise_desc">Metro Toledo isn’t one-size-fits-all — Nisus tailors strategies to each area:</p>
-                                <ul class="expertise-list">
-                                    <li data-i18n="toledo_area_1"><strong>Midtown, Downtown, Ferndale:</strong> Young professionals; high demand for modern luxury apartments.</li>
-                                    <li data-i18n="toledo_area_2"><strong>Warren, Pontiac, Berkley:</strong> Suburban families, long-term renters.</li>
-                                    <li data-i18n="toledo_area_3"><strong>Warrendale, Highland Park, Harper Woods:</strong> Workforce housing, Section 8 families; long-term tenants.</li>
-                                </ul>
-                            </div>
-                            <div class="location-image-wrapper">
-                                <div class="market-visual-bg"></div>
-                                <img src="/Images/Toledo.webp" alt="Toledo Market" class="location-img">
-                                <div class="market-stats-float">
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="trending-up"></i>
-                                        <span class="market-stat-label">Yield:</span> 9.1%
-                                    </div>
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="users"></i>
-                                        <span class="market-stat-label">Demand:</span> Rising
-                                    </div>
-                                    <div class="market-stat-pill">
-                                        <i data-lucide="shield-check"></i>
-                                        <span class="market-stat-label">Occupancy:</span> 96%
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section id="how-it-works" class="section-py bg-navy">
         <div class="container">
@@ -546,7 +409,7 @@
                     <span class="text-lime" data-i18n="title_financial_highlight">Transparency</span>
                 </h2>
                 <p class="text-muted-light section-desc-lg" data-i18n="desc_financial">
-                    Know exactly where your money is at all times. Our owner portal gives you real-time updates on rent collection, expenses, and deposits. No more wondering if the check is in the mail.
+                    Know exactly where your money is at all times. Your Owner Portal shows all your monthly financial reports including: collections, expenses, maintenance jobs with pictures, and deposits.
                 </p>
 
                 <ul style="margin-bottom: 2rem;">
@@ -610,7 +473,7 @@
                     <span class="text-lime" data-i18n="title_ready_highlight">Portfolio?</span>
                 </h2>
                 <p class="section-desc-lg text-muted-light" data-i18n="desc_growth">
-                    Beyond management, we are active investors and brokers. Gain access to exclusive off-market deals and expert guidance to scale your holdings in Detroit and Ohio. We help you calculate true ROI before you buy.
+                    Beyond management, we are active investors and brokers. Gain access to exclusive off-market residential deals and expert guidance to scale your holdings.
                 </p>
                 <div class="flex flex-col sm-row gap-4" style="margin-top: 2rem;">
                     <a href="/investments" class="btn-primary" data-i18n="btn_view_inv" style="width: 100%; text-align: center;">View Investment Opportunities</a>
@@ -639,41 +502,10 @@
             </div>
             
             <div style="max-width: 800px; margin: 0 auto;">
-                <form onsubmit="event.preventDefault(); alert('Application Submitted!');" class="visual-card-navy" style="background: var(--navy); padding: 3rem; border-radius: 2rem;">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_name">Full Name</label>
-                            <input type="text" class="form-input" placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_phone">Phone</label>
-                            <input type="tel" class="form-input" placeholder="(555) 000-0000">
-                        </div>
+                <div class="hubspot-form-wrapper" style="width: 100%; background: var(--navy); padding: 2rem; border-radius: 1.5rem;">
+                        <div class="hs-form-frame hs-form-en" data-region="na1" data-form-id="2f863b23-ecf0-4125-ad1c-6ff6175ebc52" data-portal-id="14501146"></div>
+                        <div class="hs-form-frame hs-form-es" data-region="na1" data-form-id="63397e12-ccc2-4187-835c-0e9ee0d9d6a4" data-portal-id="14501146" style="display: none;"></div>
                     </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_email">Email</label>
-                            <input type="email" class="form-input" placeholder="john@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_market">Target Market</label>
-                            <input type="text" class="form-input" placeholder="City, County or Zip">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_prop_type">Primary Property Type</label>
-                        <div class="prop-type-grid">
-                            <div class="prop-btn active" onclick="selectProp(this)"><i data-lucide="home" size="16"></i> <span data-i18n="prop_single">Single Family</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="building" size="16"></i> <span data-i18n="prop_condo">Condo</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="layers" size="16"></i> <span data-i18n="prop_plex">2-4 Plex</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up" size="16"></i> <span data-i18n="prop_1story">1 Story</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up-circle" size="16"></i> <span data-i18n="prop_2story">2 Story</span></div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
-                </form>
             </div>
         </div>
     </section>
@@ -721,46 +553,14 @@
     </footer>
 
     <div class="modal-overlay" id="contact-modal">
-        <div class="modal-content">
-            <button class="modal-close" id="close-modal-btn" aria-label="Close modal" data-i18n="[aria-label]aria_close_modal"><i data-lucide="x"></i></button>
-            <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="modal_title">Get Started with Nisus</h3>
-            <p style="color:#cbd5e1; margin-bottom: 2rem; font-size: 0.9rem;" data-i18n="modal_desc">Fill out the form below and we'll get back to you within 24 hours.</p>
-            
-            <form onsubmit="event.preventDefault(); alert('Application Submitted!');">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_name">Full Name</label>
-                        <input type="text" class="form-input" placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_phone">Phone</label>
-                        <input type="tel" class="form-input" placeholder="(555) 000-0000">
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_email">Email</label>
-                        <input type="email" class="form-input" placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_market">Target Market</label>
-                        <input type="text" class="form-input" placeholder="City, County or Zip">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" data-i18n="form_prop_type">Primary Property Type</label>
-                    <div class="prop-type-grid">
-                        <div class="prop-btn active" onclick="selectProp(this)"><i data-lucide="home" size="16"></i> <span data-i18n="prop_single">Single Family</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="building" size="16"></i> <span data-i18n="prop_condo">Condo</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="layers" size="16"></i> <span data-i18n="prop_plex">2-4 Plex</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up" size="16"></i> <span data-i18n="prop_1story">1 Story</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up-circle" size="16"></i> <span data-i18n="prop_2story">2 Story</span></div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
-            </form>
+        <div class="modal-content" style="padding: 0; background: var(--navy); overflow-y: auto;">
+            <button class="modal-close" id="close-modal-btn" style="position: absolute; top: 1rem; right: 1rem; z-index: 10;" aria-label="Close modal" data-i18n="[aria-label]aria_close_modal"><i data-lucide="x"></i></button>
+            <div style="padding: 2rem 2rem 0 2rem; background: var(--navy);">
+                <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="modal_title">Get Started with Nisus</h3>
+                <p style="color:#cbd5e1; margin-bottom: 1rem; font-size: 0.9rem;" data-i18n="modal_desc">Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+            <div class="hs-form-frame hs-form-en" data-region="na1" data-form-id="2f863b23-ecf0-4125-ad1c-6ff6175ebc52" data-portal-id="14501146" style="background: var(--navy);"></div>
+            <div class="hs-form-frame hs-form-es" data-region="na1" data-form-id="63397e12-ccc2-4187-835c-0e9ee0d9d6a4" data-portal-id="14501146" style="display: none; background: var(--navy);"></div>
         </div>
     </div>
 
@@ -803,41 +603,8 @@
                 <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="modal_title">Get Started with Nisus</h3>
                 <p style="color:#cbd5e1; margin-bottom: 2rem; font-size: 0.9rem;" data-i18n="modal_desc">Fill out the form below and we'll get back to you within 24 hours.</p>
                 
-                <form onsubmit="event.preventDefault(); alert('Application Submitted!');">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_name">Full Name</label>
-                            <input type="text" class="form-input" placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_phone">Phone</label>
-                            <input type="tel" class="form-input" placeholder="(555) 000-0000">
-                        </div>
-                    </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_email">Email</label>
-                            <input type="email" class="form-input" placeholder="john@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_market">Target Market</label>
-                            <input type="text" class="form-input" id="city-modal-input" placeholder="City, County or Zip">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_prop_type">Primary Property Type</label>
-                        <div class="prop-type-grid">
-                            <div class="prop-btn active" onclick="selectProp(this)"><i data-lucide="home" size="16"></i> <span data-i18n="prop_single">Single Family</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="building" size="16"></i> <span data-i18n="prop_condo">Condo</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="layers" size="16"></i> <span data-i18n="prop_plex">2-4 Plex</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up" size="16"></i> <span data-i18n="prop_1story">1 Story</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up-circle" size="16"></i> <span data-i18n="prop_2story">2 Story</span></div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
-                </form>
+                <div class="hs-form-frame hs-form-en" data-region="na1" data-form-id="2f863b23-ecf0-4125-ad1c-6ff6175ebc52" data-portal-id="14501146"></div>
+                    <div class="hs-form-frame hs-form-es" data-region="na1" data-form-id="63397e12-ccc2-4187-835c-0e9ee0d9d6a4" data-portal-id="14501146" style="display: none;"></div>
             </div>
         </div>
     </div>

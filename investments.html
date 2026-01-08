@@ -28,6 +28,7 @@
     <meta property="twitter:image" content="https://nisusrealestate.com/Images/House%20Nisus.avif">
     
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://js.hsforms.net/forms/embed/14501146.js" defer></script>
     <link rel="stylesheet" href="/style.css">
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=290779669070030&ev=PageView&noscript=1"
@@ -588,41 +589,10 @@
             </div>
             
             <div style="max-width: 800px; margin: 0 auto;">
-                <form onsubmit="event.preventDefault(); alert('Inquiry Submitted!');" class="visual-card-navy" style="background: var(--navy); padding: 3rem; border-radius: 2rem;">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_name">Full Name</label>
-                            <input type="text" class="form-input" placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_phone">Phone</label>
-                            <input type="tel" class="form-input" placeholder="(555) 000-0000">
-                        </div>
+                <div class="hubspot-form-wrapper" style="width: 100%; background: var(--navy); padding: 2rem; border-radius: 1.5rem;">
+                        <div class="hs-form-frame hs-form-en" data-region="na1" data-form-id="2f863b23-ecf0-4125-ad1c-6ff6175ebc52" data-portal-id="14501146"></div>
+                        <div class="hs-form-frame hs-form-es" data-region="na1" data-form-id="63397e12-ccc2-4187-835c-0e9ee0d9d6a4" data-portal-id="14501146" style="display: none;"></div>
                     </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_email">Email</label>
-                            <input type="email" class="form-input" placeholder="john@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_market">Target Market</label>
-                            <input type="text" class="form-input" placeholder="City, County or Zip">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_prop_type">Primary Property Type</label>
-                        <div class="prop-type-grid">
-                            <div class="prop-btn active" onclick="selectProp(this)"><i data-lucide="home" size="16"></i> <span data-i18n="prop_single">Single Family</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="building" size="16"></i> <span data-i18n="prop_condo">Condo</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="layers" size="16"></i> <span data-i18n="prop_plex">2-4 Plex</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up" size="16"></i> <span data-i18n="prop_1story">1 Story</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up-circle" size="16"></i> <span data-i18n="prop_2story">2 Story</span></div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
-                </form>
             </div>
         </div>
     </section>
@@ -670,46 +640,14 @@
     </footer>
 
     <div class="modal-overlay" id="contact-modal">
-        <div class="modal-content">
-            <button class="modal-close" id="close-modal-btn" aria-label="Close modal" data-i18n="[aria-label]aria_close_modal"><i data-lucide="x"></i></button>
-            <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="modal_title">Get Started with Nisus</h3>
-            <p style="color:#cbd5e1; margin-bottom: 2rem; font-size: 0.9rem;" data-i18n="modal_desc">Fill out the form below and we'll get back to you within 24 hours.</p>
-            
-            <form onsubmit="event.preventDefault(); alert('Application Submitted!');">
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_name">Full Name</label>
-                        <input type="text" class="form-input" placeholder="John Doe">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_phone">Phone</label>
-                        <input type="tel" class="form-input" placeholder="(555) 000-0000">
-                    </div>
-                </div>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_email">Email</label>
-                        <input type="email" class="form-input" placeholder="john@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_market">Target Market</label>
-                        <input type="text" class="form-input" placeholder="City, County or Zip">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" data-i18n="form_prop_type">Primary Property Type</label>
-                    <div class="prop-type-grid">
-                        <div class="prop-btn active" onclick="selectProp(this)"><i data-lucide="home" size="16"></i> <span data-i18n="prop_single">Single Family</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="building" size="16"></i> <span data-i18n="prop_condo">Condo</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="layers" size="16"></i> <span data-i18n="prop_plex">2-4 Plex</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up" size="16"></i> <span data-i18n="prop_1story">1 Story</span></div>
-                        <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up-circle" size="16"></i> <span data-i18n="prop_2story">2 Story</span></div>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
-            </form>
+        <div class="modal-content" style="padding: 0; background: var(--navy); overflow-y: auto;">
+            <button class="modal-close" id="close-modal-btn" style="position: absolute; top: 1rem; right: 1rem; z-index: 10;" aria-label="Close modal" data-i18n="[aria-label]aria_close_modal"><i data-lucide="x"></i></button>
+            <div style="padding: 2rem 2rem 0 2rem; background: var(--navy);">
+                <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="modal_title">Get Started with Nisus</h3>
+                <p style="color:#cbd5e1; margin-bottom: 1rem; font-size: 0.9rem;" data-i18n="modal_desc">Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
+            <div class="hs-form-frame hs-form-en" data-region="na1" data-form-id="2f863b23-ecf0-4125-ad1c-6ff6175ebc52" data-portal-id="14501146" style="background: var(--navy);"></div>
+            <div class="hs-form-frame hs-form-es" data-region="na1" data-form-id="63397e12-ccc2-4187-835c-0e9ee0d9d6a4" data-portal-id="14501146" style="display: none; background: var(--navy);"></div>
         </div>
     </div>
 
@@ -752,41 +690,8 @@
                 <h3 style="color:white; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;" data-i18n="modal_title">Get Started with Nisus</h3>
                 <p style="color:#cbd5e1; margin-bottom: 2rem; font-size: 0.9rem;" data-i18n="modal_desc">Fill out the form below and we'll get back to you within 24 hours.</p>
                 
-                <form onsubmit="event.preventDefault(); alert('Application Submitted!');">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_name">Full Name</label>
-                            <input type="text" class="form-input" placeholder="John Doe">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_phone">Phone</label>
-                            <input type="tel" class="form-input" placeholder="(555) 000-0000">
-                        </div>
-                    </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_email">Email</label>
-                            <input type="email" class="form-input" placeholder="john@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" data-i18n="form_market">Target Market</label>
-                            <input type="text" class="form-input" id="city-modal-input" placeholder="City, County or Zip">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" data-i18n="form_prop_type">Primary Property Type</label>
-                        <div class="prop-type-grid">
-                            <div class="prop-btn active" onclick="selectProp(this)"><i data-lucide="home" size="16"></i> <span data-i18n="prop_single">Single Family</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="building" size="16"></i> <span data-i18n="prop_condo">Condo</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="layers" size="16"></i> <span data-i18n="prop_plex">2-4 Plex</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up" size="16"></i> <span data-i18n="prop_1story">1 Story</span></div>
-                            <div class="prop-btn" onclick="selectProp(this)"><i data-lucide="arrow-up-circle" size="16"></i> <span data-i18n="prop_2story">2 Story</span></div>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-submit" data-i18n="form_submit">Submit Application</button>
-                </form>
+                <div class="hs-form-frame hs-form-en" data-region="na1" data-form-id="2f863b23-ecf0-4125-ad1c-6ff6175ebc52" data-portal-id="14501146"></div>
+                    <div class="hs-form-frame hs-form-es" data-region="na1" data-form-id="63397e12-ccc2-4187-835c-0e9ee0d9d6a4" data-portal-id="14501146" style="display: none;"></div>
             </div>
         </div>
     </div>
